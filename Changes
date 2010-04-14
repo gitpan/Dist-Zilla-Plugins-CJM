@@ -1,0 +1,81 @@
+Revision history for Dist-Zilla-Plugins-CJM
+
+0.08   April 14, 2010
+	- This distribution is now Dist-Zilla-Plugins-CJM.
+	  Dist-Zilla-PluginBundle-CJM now contains only @CJM (and
+	  requires this distribution along with the other plugins used
+	  by @CJM).
+	- Updated all version numbers to 0.08
+
+	Dist::Zilla::Plugin::ArchiveRelease
+	  - document the FilePruner role
+
+	Dist::Zilla::Plugin::PodLoom
+	  - now distributed separately, in Dist-Zilla-Plugin-PodLoom
+
+	Dist::Zilla::Plugin::TemplateCJM
+	  - added build_instructions method
+	  - In templates, $changes no longer ends with a newline
+
+0.07   April 1, 2010
+	- added tests
+
+0.06   April 1, 2010
+	Dist::Zilla::Plugin::ArchiveRelease
+	  - add FilePruner for archive directory (Michael Schout)
+
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	Dist::Zilla::Plugin::TemplateCJM
+	  - are now FileFinderUsers
+
+0.05   March 30, 2010
+	- All plugins now have a SYNOPSIS
+	- Revised compile tests
+
+0.04   March 29, 2010
+	- Now requires Dist::Zilla 2
+	- Added compile tests
+
+	Dist::Zilla::Plugin::ArchiveRelease
+	  - Added a BeforeRelease check to ensure the directory exists
+	    (creating it if necessary) and this release hasn't already
+	    been archived
+
+0.03   March 15, 2010
+	- Includes a new version of Template_strict.patch that
+	  supports scalar references properly
+
+	Dist::Zilla::Plugin::ArchiveRelease
+	  - Shortened log message
+
+	Dist::Zilla::Plugin::ModuleBuild::Custom
+	  - New plugin
+
+	Dist::Zilla::Plugin::TemplateCJM
+	  - Is now an InstallTool instead of a FileMunger, because
+	    prerequisites have not been calculated at FileMunger time
+	  - Added the dependency_link & dependency_list methods
+	  - Added a BeforeRelease check to ensure the release date is
+	    not just an uppercase word
+
+0.02   March 7, 2010
+	- Added POD tests
+	- Use the plugin's log method so the plugin name appears in the log
+
+	Dist::Zilla::Plugin::ArchiveRelease
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	  - New plugins
+
+	Dist::Zilla::Plugin::PodLoom
+	  - Define abstract, module, & version only if they
+	    could be determined
+
+	Dist::Zilla::Plugin::TemplateCJM
+	  - Also process comments that start at beginning of line
+
+0.01   October 11, 2009
+	- Initial release includes:
+	    Dist::Zilla::Plugin::PodLoom
+	    Dist::Zilla::Plugin::TemplateCJM
+	    Dist::Zilla::Plugin::VersionFromModule
+	    Dist::Zilla::Role::ModuleInfo
