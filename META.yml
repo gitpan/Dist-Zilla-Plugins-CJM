@@ -17,6 +17,7 @@ no_index:
 recommends: {}
 requires:
   Dist::Zilla: 2.100960
+  File::HomeDir: 0.81
   File::Temp: 0
   List::Util: 0
   Module::Build::ModuleInfo: 0.28
@@ -27,7 +28,7 @@ requires:
   autodie: 0
 resources:
   repository: http://github.com/madsen/dist-zilla-plugins-cjm
-version: 0.08
+version: 0.09
 x_Dist_Zilla:
   plugins:
     -
@@ -117,7 +118,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ArchiveRelease
       name: '@CJM/ArchiveRelease'
-      version: 0.08
+      version: 0.09
     -
       class: tools::CompileTests
       name: '=tools::CompileTests'

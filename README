@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 0.08, released April 14, 2010
+Dist-Zilla-Plugins-CJM version 0.09, released April 15, 2010
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -32,6 +32,7 @@ DEPENDENCIES
   Package                    Minimum Version
   -------------------------- ---------------
   Dist::Zilla                 2.100960
+  File::HomeDir               0.81
   File::Temp                  
   List::Util                  
   Module::Build::ModuleInfo   0.28
@@ -44,24 +45,11 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.08 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 0.09 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- This distribution is now Dist-Zilla-Plugins-CJM.
-	  Dist-Zilla-PluginBundle-CJM now contains only @CJM (and
-	  requires this distribution along with the other plugins used
-	  by @CJM).
-	- Updated all version numbers to 0.08
-
 	Dist::Zilla::Plugin::ArchiveRelease
-	  - document the FilePruner role
-
-	Dist::Zilla::Plugin::PodLoom
-	  - now distributed separately, in Dist-Zilla-Plugin-PodLoom
-
-	Dist::Zilla::Plugin::TemplateCJM
-	  - added build_instructions method
-	  - In templates, $changes no longer ends with a newline
+	  - accept ~ in directory to mean home directory (RT#56433)
 
 
 
