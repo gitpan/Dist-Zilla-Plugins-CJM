@@ -19,7 +19,7 @@ package Dist::Zilla::Plugin::ArchiveRelease;
 
 use 5.008;
 our $VERSION = '0.09';
-# This file is part of Dist-Zilla-Plugins-CJM 0.09 (April 15, 2010)
+# This file is part of Dist-Zilla-Plugins-CJM 3.00 (May 22, 2010)
 
 
 use Moose;
@@ -146,8 +146,8 @@ Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive dir
 =head1 VERSION
 
 This document describes version 0.09 of
-Dist::Zilla::Plugin::ArchiveRelease, released April 15, 2010
-as part of Dist-Zilla-Plugins-CJM version 0.09.
+Dist::Zilla::Plugin::ArchiveRelease, released May 22, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.00.
 
 =head1 SYNOPSIS
 

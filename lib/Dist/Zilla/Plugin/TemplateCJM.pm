@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '0.08';
-# This file is part of Dist-Zilla-Plugins-CJM 0.09 (April 15, 2010)
+our $VERSION = '3.00';
+# This file is part of Dist-Zilla-Plugins-CJM 3.00 (May 22, 2010)
 
 
 use Moose;
@@ -273,7 +273,7 @@ sub dependency_link
 {
   my ($self, $module) = @_;
 
-  my $meta = $self->zilla->distmeta;
+  my $meta = $self->zilla->distmeta->{prereqs}{runtime} || {};
   my $ver;
 
   for my $key (qw(requires recommends)) {
@@ -293,7 +293,7 @@ sub dependency_list
 {
   my ($self) = @_;
 
-  my $requires = $self->zilla->distmeta->{requires};
+  my $requires = $self->zilla->distmeta->{prereqs}{runtime}{requires};
 
   my @modules = sort grep { $_ ne 'perl' } keys %$requires;
 
@@ -366,9 +366,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 0.08 of
-Dist::Zilla::Plugin::TemplateCJM, released April 15, 2010
-as part of Dist-Zilla-Plugins-CJM version 0.09.
+This document describes version 3.00 of
+Dist::Zilla::Plugin::TemplateCJM, released May 22, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.00.
 
 =head1 SYNOPSIS
 
@@ -578,7 +578,7 @@ end with a newline.
 
 =head1 DEPENDENCIES
 
-TemplateCJM requires L<Dist::Zilla> (2.100960 or later) and
+TemplateCJM requires L<Dist::Zilla> (3 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.

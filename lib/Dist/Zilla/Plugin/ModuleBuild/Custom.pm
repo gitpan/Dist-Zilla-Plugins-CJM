@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 #---------------------------------------------------------------------
 
 our $VERSION = '0.08';
-# This file is part of Dist-Zilla-Plugins-CJM 0.09 (April 15, 2010)
+# This file is part of Dist-Zilla-Plugins-CJM 3.00 (May 22, 2010)
 
 
 use Moose;
@@ -147,8 +147,8 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 =head1 VERSION
 
 This document describes version 0.08 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released April 15, 2010
-as part of Dist-Zilla-Plugins-CJM version 0.09.
+Dist::Zilla::Plugin::ModuleBuild::Custom, released May 22, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.00.
 
 =head1 SYNOPSIS
 
@@ -244,7 +244,7 @@ distribution's prerequisites.
 
 =head1 DEPENDENCIES
 
-ModuleBuild::Custom requires L<Dist::Zilla> (2.100960 or later) and
+ModuleBuild::Custom requires L<Dist::Zilla> (3 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.

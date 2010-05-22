@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 0.09, released April 15, 2010
+Dist-Zilla-Plugins-CJM version 3.00, released May 22, 2010
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -31,7 +31,7 @@ DEPENDENCIES
 
   Package                    Minimum Version
   -------------------------- ---------------
-  Dist::Zilla                 2.100960
+  Dist::Zilla                 3
   File::HomeDir               0.81
   File::Temp                  
   List::Util                  
@@ -45,11 +45,13 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.09 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 3.00 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::ArchiveRelease
-	  - accept ~ in directory to mean home directory (RT#56433)
+	- Now requires Dist::Zilla 3
+
+	Dist::Zilla::Plugin::TemplateCJM
+	  - Now compatible with Dist::Zilla 3
 
 
 

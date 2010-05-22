@@ -9,37 +9,47 @@ use ExtUtils::MakeMaker 6.31;
 
 
 my %WriteMakefileArgs = (
-                       'test' => {
-                                   'TESTS' => 't/*.t'
-                                 },
-                       'NAME' => 'Dist::Zilla::Plugins::CJM',
-                       'DISTNAME' => 'Dist-Zilla-Plugins-CJM',
-                       'CONFIGURE_REQUIRES' => {
-                                                 'ExtUtils::MakeMaker' => '6.31'
-                                               },
-                       'AUTHOR' => 'Christopher J. Madsen <perl@cjmweb.net>',
-                       'BUILD_REQUIRES' => {},
-                       'ABSTRACT' => 'CJM\'s plugins for Dist::Zilla',
-                       'EXE_FILES' => [],
-                       'VERSION' => '0.09',
-                       'PREREQ_PM' => {
-                                        'Scalar::Util' => '0',
-                                        'File::HomeDir' => '0.81',
-                                        'Moose::Autobox' => '0.09',
-                                        'List::Util' => '0',
-                                        'Module::Build::ModuleInfo' => '0.28',
-                                        'File::Temp' => '0',
-                                        'Dist::Zilla' => '2.100960',
-                                        'autodie' => '0',
-                                        'Path::Class' => '0',
-                                        'Moose' => '0.65'
-                                      },
-                       'LICENSE' => 'perl'
-                     );
+  'ABSTRACT' => 'CJM\'s plugins for Dist::Zilla',
+  'AUTHOR' => 'Christopher J. Madsen <perl@cjmweb.net>',
+  'BUILD_REQUIRES' => {},
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
+  },
+  'DISTNAME' => 'Dist-Zilla-Plugins-CJM',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Dist::Zilla::Plugins::CJM',
+  'PREREQ_PM' => {
+    'Dist::Zilla' => '3',
+    'File::HomeDir' => '0.81',
+    'File::Temp' => '0',
+    'List::Util' => '0',
+    'Module::Build::ModuleInfo' => '0.28',
+    'Moose' => '0.65',
+    'Moose::Autobox' => '0.09',
+    'Path::Class' => '0',
+    'Scalar::Util' => '0',
+    'autodie' => '0'
+  },
+  'VERSION' => '3.00',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
+);
 
 
-delete $WriteMakefileArgs{BUILD_REQUIRES}
-  unless eval { ExtUtils::MakeMaker->VERSION(6.56) };
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM}; 
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod}; 
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
   unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
