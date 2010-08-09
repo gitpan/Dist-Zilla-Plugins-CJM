@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '0.08';
-# This file is part of Dist-Zilla-Plugins-CJM 3.00 (May 22, 2010)
+our $VERSION = '3.01';
+# This file is part of Dist-Zilla-Plugins-CJM 3.01 (August 9, 2010)
 
 
 use Moose;
@@ -34,6 +34,24 @@ use Scalar::Util 'reftype';
 has '+delim' => (
   default  => sub { [ '##{', '##}' ] },
 );
+
+has distmeta1 => (
+  is   => 'ro',
+  isa  => 'HashRef',
+  init_arg  => undef,
+  lazy      => 1,
+  builder   => '_build_distmeta1',
+);
+
+sub _build_distmeta1
+{
+  my $self = shift;
+
+  require CPAN::Meta::Converter;
+
+  my $converter = CPAN::Meta::Converter->new($self->zilla->distmeta);
+  return $converter->convert(version => '1.4');
+} # end _build_distmeta1
 
 # Get rid of any META.yml we may have picked up from Module::Build:
 sub prune_files {
@@ -52,11 +70,11 @@ sub get_meta
   my $self = shift;
 
   # Extract the wanted keys from distmeta:
-  my $distmeta = $self->zilla->distmeta;
+  my $distmeta = $self->distmeta1;
   my %want;
 
   foreach my $key (@_) {
-    $self->log_debug("Fetching distmeta key $key");
+    $self->log_debug("Fetching distmeta1 key $key");
     next unless defined $distmeta->{$key};
 
     # Skip keys with empty value:
@@ -101,7 +119,8 @@ sub setup_installer
   # Process Build.PL through Text::Template:
   my %data = (
      dist    => $self->zilla->name,
-     meta    => $self->zilla->distmeta,
+     meta    => $self->distmeta1,
+     meta2   => $self->zilla->distmeta,
      plugin  => \$self,
      version => $self->zilla->version,
      zilla   => \$self->zilla,
@@ -146,9 +165,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 0.08 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released May 22, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.00.
+This document describes version 3.01 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released August 9, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.01.
 
 =head1 SYNOPSIS
 
@@ -199,7 +218,11 @@ The name of the distribution.
 
 =item C<$meta>
 
-The hash of metadata that will be stored in F<META.yml>.
+The hash of metadata (in META 1.4 format) that will be stored in F<META.yml>.
+
+=item C<$meta2>
+
+The hash of metadata (in META 2 format) that will be stored in F<META.yml>.
 
 =item C<$plugin>
 
@@ -223,7 +246,9 @@ The Dist::Zilla object that is creating the distribution.
 
 A template can call this method to extract the specified key(s) from
 C<distmeta> and have them formatted into a comma-separated list
-suitable for a hash constructor or a method's parameter list.
+suitable for a hash constructor or a method's parameter list.  The
+keys (and the returned values) are from the META 1.4 spec, because
+that's what Module::Build uses in its API.
 
 If any key has no value (or its value is an empty hash or array ref)
 it will be omitted from the list.  If all keys are omitted, the empty

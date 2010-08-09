@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::VersionFromModule;
 #---------------------------------------------------------------------
 
 our $VERSION = '0.08';
-# This file is part of Dist-Zilla-Plugins-CJM 3.00 (May 22, 2010)
+# This file is part of Dist-Zilla-Plugins-CJM 3.01 (August 9, 2010)
 
 use Moose;
 with 'Dist::Zilla::Role::VersionProvider';
@@ -57,8 +57,8 @@ Dist::Zilla::Plugin::VersionFromModule - Get distribution version from its main_
 =head1 VERSION
 
 This document describes version 0.08 of
-Dist::Zilla::Plugin::VersionFromModule, released May 22, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.00.
+Dist::Zilla::Plugin::VersionFromModule, released August 9, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.01.
 
 =head1 SYNOPSIS
 

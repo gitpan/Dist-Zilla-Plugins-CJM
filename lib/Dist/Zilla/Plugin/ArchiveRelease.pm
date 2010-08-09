@@ -18,8 +18,8 @@ package Dist::Zilla::Plugin::ArchiveRelease;
 #---------------------------------------------------------------------
 
 use 5.008;
-our $VERSION = '0.09';
-# This file is part of Dist-Zilla-Plugins-CJM 3.00 (May 22, 2010)
+our $VERSION = '3.01';
+# This file is part of Dist-Zilla-Plugins-CJM 3.01 (August 9, 2010)
 
 
 use Moose;
@@ -127,7 +127,9 @@ sub release
   my $dest = $self->directory->file($tgz->basename);
   my $destR = $self->pretty_path($dest);
 
-  rename $tgz, $dest or $self->log_fatal("Failed to move to $destR: $!");
+  require File::Copy;
+  File::Copy::move($tgz, $dest)
+        or $self->log_fatal("Failed to move to $destR: $!");
 
   $self->log("Moved to $destR");
 } # end release
@@ -145,9 +147,9 @@ Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive dir
 
 =head1 VERSION
 
-This document describes version 0.09 of
-Dist::Zilla::Plugin::ArchiveRelease, released May 22, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.00.
+This document describes version 3.01 of
+Dist::Zilla::Plugin::ArchiveRelease, released August 9, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.01.
 
 =head1 SYNOPSIS
 

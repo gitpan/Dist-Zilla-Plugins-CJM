@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 3.00, released May 22, 2010
+Dist-Zilla-Plugins-CJM version 3.01, released August 9, 2010
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -31,7 +31,9 @@ DEPENDENCIES
 
   Package                    Minimum Version
   -------------------------- ---------------
+  CPAN::Meta::Converter       2.101550
   Dist::Zilla                 3
+  File::Copy                  
   File::HomeDir               0.81
   File::Temp                  
   List::Util                  
@@ -45,13 +47,15 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 3.00 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 3.01 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Now requires Dist::Zilla 3
+	Dist::Zilla::Plugin::ArchiveRelease
+	  - Use File::Copy::move to support cross-filesystem moves (RT#59288)
 
-	Dist::Zilla::Plugin::TemplateCJM
-	  - Now compatible with Dist::Zilla 3
+	Dist::Zilla::Plugin::ModuleBuild::Custom
+	  - Now compatible with Dist::Zilla 3 & 4
+	  - Now has tests
 
 
 

@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 #---------------------------------------------------------------------
 
 our $VERSION = '0.08';
-# This file is part of Dist-Zilla-Plugins-CJM 3.00 (May 22, 2010)
+# This file is part of Dist-Zilla-Plugins-CJM 3.01 (August 9, 2010)
 
 
 use Moose;
@@ -130,8 +130,8 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 =head1 VERSION
 
 This document describes version 0.08 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released May 22, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.00.
+Dist::Zilla::Plugin::GitVersionCheckCJM, released August 9, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.01.
 
 =head1 SYNOPSIS
 

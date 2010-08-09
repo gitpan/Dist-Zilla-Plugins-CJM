@@ -20,7 +20,9 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Dist::Zilla::Plugins::CJM',
   'PREREQ_PM' => {
+    'CPAN::Meta::Converter' => '2.101550',
     'Dist::Zilla' => '3',
+    'File::Copy' => '0',
     'File::HomeDir' => '0.81',
     'File::Temp' => '0',
     'List::Util' => '0',
@@ -31,7 +33,7 @@ my %WriteMakefileArgs = (
     'Scalar::Util' => '0',
     'autodie' => '0'
   },
-  'VERSION' => '3.00',
+  'VERSION' => '3.01',
   'test' => {
     'TESTS' => 't/*.t'
   }
@@ -40,10 +42,10 @@ my %WriteMakefileArgs = (
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM}; 
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
   for my $mod ( keys %$br ) {
     if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod}; 
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
     }
     else {
       $pp->{$mod} = $br->{$mod};
