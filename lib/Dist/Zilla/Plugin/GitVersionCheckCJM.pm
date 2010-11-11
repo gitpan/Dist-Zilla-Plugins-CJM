@@ -17,10 +17,11 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '0.08';
-# This file is part of Dist-Zilla-Plugins-CJM 3.01 (August 9, 2010)
+our $VERSION = '3.02';
+# This file is part of Dist-Zilla-Plugins-CJM 3.02 (November 11, 2010)
 
 
+use version 0.77 ();
 use Moose;
 use Moose::Autobox;
 with(
@@ -32,7 +33,21 @@ with(
 );
 
 
-use Git ();
+use Git::Wrapper ();
+
+#---------------------------------------------------------------------
+# Helper sub to run a git command and split on NULs:
+
+sub _git0
+{
+  my ($git, $command, @args) = @_;
+
+  my ($result) = do { local $/; $git->$command(@args) };
+
+  return unless defined $result;
+
+  split(/\0/, $result);
+} # end _git0
 
 #---------------------------------------------------------------------
 # Main entry point:
@@ -41,16 +56,16 @@ sub munge_files {
   my ($self) = @_;
 
   # Get the released versions:
-  my $git = Git->repository( $self->zilla->root );
+  my $git = Git::Wrapper->new( $self->zilla->root );
 
-  my %released = map { /^v?([\d._]+)$/ ? ($1, 1) : () } $git->command('tag');
+  my %released = map { /^v?([\d._]+)$/ ? ($1, 1) : () } $git->tag;
 
   # Get the list of modified but not-checked-in files:
   my %modified = map { $_ => 1 } (
     # Files that need to be committed:
-    split(/\0/, scalar $git->command(qw( diff-index -z HEAD --name-only ))),
+    _git0($git, qw( diff_index -z HEAD --name-only )),
     # Files that are not tracked by git yet:
-    split(/\0/, scalar $git->command(qw( ls-files -oz --exclude-standard ))),
+    _git0($git, qw( ls_files -oz --exclude-standard )),
   );
 
   # Get the list of modules:
@@ -79,16 +94,28 @@ sub munge_file
   my $version = $pm_info->version
       or $self->log_fatal("ERROR: Can't find version in $pmFile");
 
+  my $distver = version->parse($self->zilla->version);
+
   # If module version matches dist version, it's current:
   #   (unless that dist has already been released)
-  if ($version eq $self->zilla->version) {
+  if ($version == $distver) {
     return unless $releasedRef->{$version};
+  }
+
+  # If the module version is greater than the dist version, that's a problem:
+  if ($version > $distver) {
+    $self->log("ERROR: $pmFile: $version exceeds dist version $distver");
+    return 1;
   }
 
   # If the module hasn't been committed yet, it needs updating:
   #   (since it doesn't match the dist version)
   if ($modifiedRef->{$pmFile}) {
-    $self->log("ERROR: $pmFile: $version needs to be updated");
+    if ($version == $distver) {
+      $self->log("ERROR: $pmFile: dist version $version needs to be updated");
+    } else {
+      $self->log("ERROR: $pmFile: $version needs to be updated");
+    }
     return 1;
   }
 
@@ -100,19 +127,21 @@ sub munge_file
   }
 
   # See if we checked in the module without updating the version:
-  my $lastChangedRev = $git->command_oneline(
-    qw(rev-list -n1 HEAD --) => $pmFile
-  );
+  my ($lastChangedRev) = $git->rev_list(qw(-n1 HEAD --) => $pmFile);
 
-  my $inRelease = $git->command_oneline(
-    qw(name-rev --refs), "refs/tags/$version",
+  my ($inRelease) = $git->name_rev(
+    qw(--refs), "refs/tags/$version",
     $lastChangedRev
   );
 
   # We're ok if the last change was part of the indicated release:
   return if $inRelease =~ m! tags/\Q$version\E!;
 
-  $self->log("ERROR: $pmFile: $version needs to be updated");
+  if ($version == $distver) {
+    $self->log("ERROR: $pmFile: dist version $version needs to be updated");
+  } else {
+    $self->log("ERROR: $pmFile: $version needs to be updated");
+  }
   return 1;
 } # end munge_file
 
@@ -129,9 +158,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 0.08 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released August 9, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.01.
+This document describes version 3.02 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released November 11, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.02.
 
 =head1 SYNOPSIS
 
@@ -183,8 +212,9 @@ listed any number of times.
 =head1 DEPENDENCIES
 
 GitVersionCheckCJM requires L<Dist::Zilla> (3 or later).
-It also requires L<Git>, which is not on CPAN, but is distributed as
-part of C<git>.
+It also requires L<Git::Wrapper>, although it
+is only listed as a recommended dependency for the distribution (to
+allow people who don't use Git to use the other plugins.)
 
 =head1 INCOMPATIBILITIES
 
@@ -204,7 +234,7 @@ or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
-L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
+git://github.com/madsen/dist-zilla-plugins-cjm.git.
 
 =head1 COPYRIGHT AND LICENSE
 

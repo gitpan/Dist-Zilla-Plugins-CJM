@@ -11,7 +11,10 @@ use ExtUtils::MakeMaker 6.31;
 my %WriteMakefileArgs = (
   'ABSTRACT' => 'CJM\'s plugins for Dist::Zilla',
   'AUTHOR' => 'Christopher J. Madsen <perl@cjmweb.net>',
-  'BUILD_REQUIRES' => {},
+  'BUILD_REQUIRES' => {
+    'File::pushd' => '0',
+    'Test::More' => '0.88'
+  },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
   },
@@ -24,16 +27,17 @@ my %WriteMakefileArgs = (
     'Dist::Zilla' => '3',
     'File::Copy' => '0',
     'File::HomeDir' => '0.81',
-    'File::Temp' => '0',
+    'File::Temp' => '0.19',
     'List::Util' => '0',
     'Module::Build::ModuleInfo' => '0.28',
     'Moose' => '0.65',
     'Moose::Autobox' => '0.09',
     'Path::Class' => '0',
     'Scalar::Util' => '0',
-    'autodie' => '0'
+    'autodie' => '0',
+    'version' => '0.77'
   },
-  'VERSION' => '3.01',
+  'VERSION' => '3.02',
   'test' => {
     'TESTS' => 't/*.t'
   }

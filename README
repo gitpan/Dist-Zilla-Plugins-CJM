@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 3.01, released August 9, 2010
+Dist-Zilla-Plugins-CJM version 3.02, released November 11, 2010
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -35,26 +35,28 @@ DEPENDENCIES
   Dist::Zilla                 3
   File::Copy                  
   File::HomeDir               0.81
-  File::Temp                  
+  File::Temp                  0.19
   List::Util                  
   Module::Build::ModuleInfo   0.28
   Moose                       0.65
   Moose::Autobox              0.09
   Path::Class                 
   Scalar::Util                
-  autodie
+  autodie                     
+  version                     0.77
 
 
 
 CHANGES
-    Here's what's new in version 3.01 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 3.02 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::ArchiveRelease
-	  - Use File::Copy::move to support cross-filesystem moves (RT#59288)
+	- Fixed test prerequisites (needed Test::More 0.88)
 
-	Dist::Zilla::Plugin::ModuleBuild::Custom
-	  - Now compatible with Dist::Zilla 3 & 4
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	  - Use Git::Wrapper instead of Git (RT#60140)
+	  - Complain if a module's version exceeds the dist's version
+	  - Indicate when the dist's version needs to be incremented
 	  - Now has tests
 
 
