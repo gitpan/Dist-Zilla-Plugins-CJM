@@ -19,7 +19,7 @@ package Dist::Zilla::Plugin::ArchiveRelease;
 
 use 5.008;
 our $VERSION = '3.01';
-# This file is part of Dist-Zilla-Plugins-CJM 3.02 (November 11, 2010)
+# This file is part of Dist-Zilla-Plugins-CJM 3.03 (December 7, 2010)
 
 
 use Moose;
@@ -148,8 +148,8 @@ Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive dir
 =head1 VERSION
 
 This document describes version 3.01 of
-Dist::Zilla::Plugin::ArchiveRelease, released November 11, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.02.
+Dist::Zilla::Plugin::ArchiveRelease, released December 7, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.03.
 
 =head1 SYNOPSIS
 
@@ -207,7 +207,7 @@ or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
-git://github.com/madsen/dist-zilla-plugins-cjm.git.
+L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 

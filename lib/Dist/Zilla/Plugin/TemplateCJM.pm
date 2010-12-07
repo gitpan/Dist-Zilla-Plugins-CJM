@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '3.00';
-# This file is part of Dist-Zilla-Plugins-CJM 3.02 (November 11, 2010)
+our $VERSION = '3.03';
+# This file is part of Dist-Zilla-Plugins-CJM 3.03 (December 7, 2010)
 
 
 use Moose;
@@ -227,7 +227,10 @@ sub munge_file
                }xgems;
 
   # And comments at BOL:
-  $content =~ s{( ^\#.+ )}
+  #   Text::Template breaks on strings that have the closing delimiter
+  #   without the opening one.  Only process comments that have at
+  #   least one matched set of delimiters.
+  $content =~ s{( ^\# .* \{\{ .* \}\} .* )}
                {
                  $self->_cur_offset($-[0]);
                  $self->fill_in_string($1, $dataRef, $parmsRef)
@@ -366,9 +369,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 3.00 of
-Dist::Zilla::Plugin::TemplateCJM, released November 11, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.02.
+This document describes version 3.03 of
+Dist::Zilla::Plugin::TemplateCJM, released December 7, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.03.
 
 =head1 SYNOPSIS
 
@@ -601,7 +604,7 @@ or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
-git://github.com/madsen/dist-zilla-plugins-cjm.git.
+L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 

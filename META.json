@@ -49,6 +49,7 @@
             "Test::Fatal" : 0
          },
          "requires" : {
+            "Dist::Zilla::Tester" : "4.101800",
             "File::pushd" : 0,
             "Test::More" : "0.88"
          }
@@ -62,7 +63,7 @@
          "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "3.02",
+   "version" : "3.03",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -113,7 +114,7 @@
          {
             "class" : "Dist::Zilla::Plugin::PodLoom",
             "name" : "@CJM/PodLoom",
-            "version" : "3.00"
+            "version" : "3.01"
          },
          {
             "class" : "Dist::Zilla::Plugin::MakeMaker",
@@ -128,7 +129,7 @@
          {
             "class" : "Dist::Zilla::Plugin::MatchManifest",
             "name" : "@CJM/MatchManifest",
-            "version" : "0.04"
+            "version" : "4.00"
          },
          {
             "class" : "Dist::Zilla::Plugin::GitVersionCheckCJM",
@@ -138,7 +139,7 @@
          {
             "class" : "Dist::Zilla::Plugin::TemplateCJM",
             "name" : "@CJM/TemplateCJM",
-            "version" : "3.00"
+            "version" : "3.03"
          },
          {
             "class" : "Dist::Zilla::Plugin::Repository",

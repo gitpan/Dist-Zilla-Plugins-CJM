@@ -1,10 +1,10 @@
 #---------------------------------------------------------------------
-package Dist::Zilla::Role::ModuleInfo;
+package Dist::Zilla::Plugin::Metadata;
 #
-# Copyright 2009 Christopher J. Madsen
+# Copyright 2010 Christopher J. Madsen
 #
 # Author: Christopher J. Madsen <perl@cjmweb.net>
-# Created: 25 Sep 2009
+# Created:  2 Dec 2010
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -14,77 +14,103 @@ package Dist::Zilla::Role::ModuleInfo;
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either the
 # GNU General Public License or the Artistic License for more details.
 #
-# ABSTRACT: Create Module::Build::ModuleInfo object from Dist::Zilla::File
+# ABSTRACT: Add arbitrary keys to distmeta
 #---------------------------------------------------------------------
 
-our $VERSION = '0.08';
+our $VERSION = '3.03';
 # This file is part of Dist-Zilla-Plugins-CJM 3.03 (December 7, 2010)
 
-use Moose::Role;
 
-use autodie ':io';
-use File::Temp ();
-use Module::Build::ModuleInfo ();
-use Path::Class qw(dir file);
+use Moose;
 
+has metadata => (
+  is       => 'ro',
+  isa      => 'HashRef',
+  required => 1,
+);
 
-sub get_module_info
+with 'Dist::Zilla::Role::MetaProvider';
+
+#---------------------------------------------------------------------
+sub BUILDARGS
 {
-  my $self = shift;
-  my $file = shift;
-  # Any additional parameters get passed to M::B::ModuleInfo->new_from_file
+  my ($class, @arg) = @_;
+  my %copy = ref $arg[0] ? %{$arg[0]} : @arg;
 
-  # Module::Build::ModuleInfo doesn't have a new_from_string method,
-  # so we'll write the current contents to a temporary file:
+  my $zilla = delete $copy{zilla};
+  my $name  = delete $copy{plugin_name};
 
-  my $tempdirObject = File::Temp->newdir();
-  my $dir     = dir("$tempdirObject");
-  my $modPath = file($file->name);
+  my %metadata;
+  while (my ($key, $value) = each %copy) {
+    my @keys = split (/\./, $key, -1);
+    my $hash = \%metadata;
+    while (@keys > 1) {
+      $hash = $hash->{shift @keys} ||= {};
+    }
 
-  # Module::Build::ModuleInfo only cares about the basename of the file:
-  my $tempname = $dir->file($modPath->basename);
+    $hash->{$keys[0]} = $value;
+  } # end while each %copy
 
-  open(my $temp, '>', $tempname);
-  print $temp $file->content;
-  close $temp;
+  return {
+    zilla       => $zilla,
+    plugin_name => $name,
+    metadata    => \%metadata,
+  };
+} # end BUILDARGS
 
-  return Module::Build::ModuleInfo->new_from_file("$tempname", @_)
-      or die "Unable to get module info from " . $file->name . "\n";
-} # end get_module_info
+#---------------------------------------------------------------------
+sub mvp_multivalue_args
+{
+  return qw(author keywords license no_index.file no_index.directory
+            no_index.package no_index.namespace resources.license );
+} # end mvp_multivalue_args
 
-no Moose::Role;
+#=====================================================================
+no Moose;
+__PACKAGE__->meta->make_immutable;
 1;
 
 __END__
 
 =head1 NAME
 
-Dist::Zilla::Role::ModuleInfo - Create Module::Build::ModuleInfo object from Dist::Zilla::File
+Dist::Zilla::Plugin::Metadata - Add arbitrary keys to distmeta
 
 =head1 VERSION
 
-This document describes version 0.08 of
-Dist::Zilla::Role::ModuleInfo, released December 7, 2010
+This document describes version 3.03 of
+Dist::Zilla::Plugin::Metadata, released December 7, 2010
 as part of Dist-Zilla-Plugins-CJM version 3.03.
+
+=head1 SYNOPSIS
+
+In your F<dist.ini>:
+
+  [Metadata]
+  dynamic_config              = 1
+  resources.homepage          = http://example.com
+  resources.bugtracker.mailto = bugs@example.com
 
 =head1 DESCRIPTION
 
-Plugins implementing ModuleInfo may call their own C<get_module_info>
-method to construct a L<Module::Build::ModuleInfo> object.
+The Metadata plugin allows you to add arbitrary keys to your
+distribution's metadata.
 
-=head1 METHODS
+It splits each key on '.' and uses that as a multi-level hash key.  It
+doesn't try to do any validation; the MetaJSON or MetaYAML plugin will
+do that.  It does know which keys in the spec are List values; those
+keys can be repeated.
 
-=head2 get_module_info
-
-  my $info = $plugin->get_module_info($file);
-
-This constructs a Module::Build::ModuleInfo object from the contents
-of a C<$file> object that does Dist::Zilla::Role::File.  Any additional
-arguments are passed along to C<< Module::Build::ModuleInfo->new_from_file >>.
+=for Pod::Coverage
+mvp_multivalue_args
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
-Dist::Zilla::Role::ModuleInfo requires no configuration files or environment variables.
+Dist::Zilla::Plugin::Metadata requires no configuration files or environment variables.
+
+=head1 DEPENDENCIES
+
+Metadata requires L<Dist::Zilla> (3 or later).
 
 =head1 INCOMPATIBILITIES
 

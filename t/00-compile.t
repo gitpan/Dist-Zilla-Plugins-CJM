@@ -1,8 +1,9 @@
-use Test::More tests => 6;
+use Test::More tests => 7;
 
-diag("Testing Dist-Zilla-Plugins-CJM 3.02");
+diag("Testing Dist-Zilla-Plugins-CJM 3.03");
 
 use_ok('Dist::Zilla::Plugin::ArchiveRelease');
+use_ok('Dist::Zilla::Plugin::Metadata');
 use_ok('Dist::Zilla::Plugin::ModuleBuild::Custom');
 use_ok('Dist::Zilla::Plugin::TemplateCJM');
 use_ok('Dist::Zilla::Plugin::VersionFromModule');

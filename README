@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 3.02, released November 11, 2010
+Dist-Zilla-Plugins-CJM version 3.03, released December 7, 2010
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -48,16 +48,16 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 3.02 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 3.03 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Fixed test prerequisites (needed Test::More 0.88)
+	Dist::Zilla::Plugin::Metadata
+	  - New plugin
 
-	Dist::Zilla::Plugin::GitVersionCheckCJM
-	  - Use Git::Wrapper instead of Git (RT#60140)
-	  - Complain if a module's version exceeds the dist's version
-	  - Indicate when the dist's version needs to be incremented
-	  - Now has tests
+	Dist::Zilla::Plugin::TemplateCJM
+	  - Only process comments that contain a {{ }} pair.
+	    Text::Template breaks on strings that have the closing
+	    delimiter without the opening one.
 
 
 

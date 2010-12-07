@@ -12,6 +12,7 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'CJM\'s plugins for Dist::Zilla',
   'AUTHOR' => 'Christopher J. Madsen <perl@cjmweb.net>',
   'BUILD_REQUIRES' => {
+    'Dist::Zilla::Tester' => '4.101800',
     'File::pushd' => '0',
     'Test::More' => '0.88'
   },
@@ -37,7 +38,7 @@ my %WriteMakefileArgs = (
     'autodie' => '0',
     'version' => '0.77'
   },
-  'VERSION' => '3.02',
+  'VERSION' => '3.03',
   'test' => {
     'TESTS' => 't/*.t'
   }
