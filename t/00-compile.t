@@ -1,6 +1,6 @@
 use Test::More tests => 7;
 
-diag("Testing Dist-Zilla-Plugins-CJM 3.03");
+diag("Testing Dist-Zilla-Plugins-CJM 3.04");
 
 use_ok('Dist::Zilla::Plugin::ArchiveRelease');
 use_ok('Dist::Zilla::Plugin::Metadata');

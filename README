@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 3.03, released December 7, 2010
+Dist-Zilla-Plugins-CJM version 3.04, released December 20, 2010
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -29,35 +29,34 @@ To install these modules, run the following commands:
 
 DEPENDENCIES
 
-  Package                    Minimum Version
-  -------------------------- ---------------
-  CPAN::Meta::Converter       2.101550
-  Dist::Zilla                 3
-  File::Copy                  
-  File::HomeDir               0.81
-  File::Temp                  0.19
-  List::Util                  
-  Module::Build::ModuleInfo   0.28
-  Moose                       0.65
-  Moose::Autobox              0.09
-  Path::Class                 
-  Scalar::Util                
-  autodie                     
-  version                     0.77
+  Package                Minimum Version
+  ---------------------- ---------------
+  CPAN::Meta::Converter   2.101550
+  Dist::Zilla             3
+  File::Copy              
+  File::HomeDir           0.81
+  File::Temp              0.19
+  List::Util              
+  Module::Metadata        
+  Moose                   0.65
+  Moose::Autobox          0.09
+  Path::Class             
+  Scalar::Util            
+  autodie                 
+  version                 0.77
 
 
 
 CHANGES
-    Here's what's new in version 3.03 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 3.04 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::Metadata
-	  - New plugin
+	Dist::Zilla::Role::ModuleInfo
+	  - Use Module::Metadata instead of Module::Build::ModuleInfo
+	  - Locally reset $/ $, $\ to default values (just in case)
 
 	Dist::Zilla::Plugin::TemplateCJM
-	  - Only process comments that contain a {{ }} pair.
-	    Text::Template breaks on strings that have the closing
-	    delimiter without the opening one.
+	  - Updated docs to talk about Module::Metadata
 
 
 

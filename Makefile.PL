@@ -30,7 +30,7 @@ my %WriteMakefileArgs = (
     'File::HomeDir' => '0.81',
     'File::Temp' => '0.19',
     'List::Util' => '0',
-    'Module::Build::ModuleInfo' => '0.28',
+    'Module::Metadata' => '0',
     'Moose' => '0.65',
     'Moose::Autobox' => '0.09',
     'Path::Class' => '0',
@@ -38,7 +38,7 @@ my %WriteMakefileArgs = (
     'autodie' => '0',
     'version' => '0.77'
   },
-  'VERSION' => '3.03',
+  'VERSION' => '3.04',
   'test' => {
     'TESTS' => 't/*.t'
   }

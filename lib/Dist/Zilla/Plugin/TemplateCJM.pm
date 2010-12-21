@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '3.03';
-# This file is part of Dist-Zilla-Plugins-CJM 3.03 (December 7, 2010)
+our $VERSION = '3.04';
+# This file is part of Dist-Zilla-Plugins-CJM 3.04 (December 20, 2010)
 
 
 use Moose;
@@ -369,9 +369,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 3.03 of
-Dist::Zilla::Plugin::TemplateCJM, released December 7, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.03.
+This document describes version 3.04 of
+Dist::Zilla::Plugin::TemplateCJM, released December 20, 2010
+as part of Dist-Zilla-Plugins-CJM version 3.04.
 
 =head1 SYNOPSIS
 
@@ -461,7 +461,7 @@ The name of the module being processed (i.e., its package).
 
 =item C<$pm_info>
 
-A Module::Build::ModuleInfo object containing information about the
+A Module::Metadata object containing information about the
 module.  (Note that the filename in C<$pm_info> will not be correct.)
 
 =item C<$version>
