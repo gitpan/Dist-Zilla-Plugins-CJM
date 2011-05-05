@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '3.02';
-# This file is part of Dist-Zilla-Plugins-CJM 3.04 (December 20, 2010)
+our $VERSION = '3.05';
+# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
 
 
 use version 0.77 ();
@@ -61,7 +61,7 @@ sub munge_files {
   my %released = map { /^v?([\d._]+)$/ ? ($1, 1) : () } $git->tag;
 
   # Get the list of modified but not-checked-in files:
-  my %modified = map { $_ => 1 } (
+  my %modified = map { $self->log_debug("mod: $_"); $_ => 1 } (
     # Files that need to be committed:
     _git0($git, qw( diff_index -z HEAD --name-only )),
     # Files that are not tracked by git yet:
@@ -158,9 +158,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 3.02 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released December 20, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.04.
+This document describes version 3.05 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released May 5, 2011
+as part of Dist-Zilla-Plugins-CJM version 3.05.
 
 =head1 SYNOPSIS
 
@@ -238,7 +238,7 @@ L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Christopher J. Madsen.
+This software is copyright (c) 2011 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

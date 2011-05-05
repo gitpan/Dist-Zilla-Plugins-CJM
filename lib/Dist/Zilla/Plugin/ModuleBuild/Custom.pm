@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '3.01';
-# This file is part of Dist-Zilla-Plugins-CJM 3.04 (December 20, 2010)
+our $VERSION = '3.05';
+# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
 
 
 use Moose;
@@ -70,20 +70,30 @@ sub get_meta
   my $self = shift;
 
   # Extract the wanted keys from distmeta:
-  my $distmeta = $self->distmeta1;
+  return $self->_extract_keys(distmeta1 => $self->distmeta1, @_);
+} # end get_meta
+#---------------------------------------------------------------------
+
+sub _extract_keys
+{
+  my $self = shift;
+  my $type = shift;
+  my $hash = shift;
+
+  # Extract the wanted keys from the hash:
   my %want;
 
   foreach my $key (@_) {
-    $self->log_debug("Fetching distmeta1 key $key");
-    next unless defined $distmeta->{$key};
+    $self->log_debug("Fetching $type key $key");
+    next unless defined $hash->{$key};
 
     # Skip keys with empty value:
-    my $reftype = reftype($distmeta->{$key});
+    my $reftype = reftype($hash->{$key});
     if (not $reftype) {}
-    elsif ($reftype eq 'HASH')  { next unless %{ $distmeta->{$key} } }
-    elsif ($reftype eq 'ARRAY') { next unless @{ $distmeta->{$key} } }
+    elsif ($reftype eq 'HASH')  { next unless %{ $hash->{$key} } }
+    elsif ($reftype eq 'ARRAY') { next unless @{ $hash->{$key} } }
 
-    $want{$key} = $distmeta->{$key};
+    $want{$key} = $hash->{$key};
   } # end foreach $key
 
   # Format them for inclusion:
@@ -98,7 +108,8 @@ sub get_meta
   }
 
   return $data;
-} # end get_meta
+} # end _extract_keys
+
 #---------------------------------------------------------------------
 
 
@@ -107,6 +118,24 @@ sub get_prereqs
   shift->get_meta(qw(build_requires configure_requires requires recommends
                      conflicts));
 } # end get_prereqs
+
+#---------------------------------------------------------------------
+
+
+has _default_mb_args => (
+  is        => 'ro',
+  isa       => 'HashRef',
+  init_arg  => undef,
+  lazy      => 1,
+  builder   => 'module_build_args',
+);
+
+sub get_default
+{
+  my $self = shift;
+
+  return $self->_extract_keys(module_build => $self->_default_mb_args, @_);
+} # end get_default
 
 #---------------------------------------------------------------------
 sub setup_installer
@@ -165,9 +194,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 3.01 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released December 20, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.04.
+This document describes version 3.05 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released May 5, 2011
+as part of Dist-Zilla-Plugins-CJM version 3.05.
 
 =head1 SYNOPSIS
 
@@ -183,6 +212,7 @@ In your F<Build.PL>:
   my $builder = Module::Build->new(
     module_name => 'Foo::Bar',
   ##{ $plugin->get_prereqs ##}
+  ##{ $plugin->get_default('share_dir') ##}
   );
   $builder->create_build_script;
 
@@ -239,6 +269,24 @@ The Dist::Zilla object that is creating the distribution.
 =back
 
 =head1 METHODS
+
+=head2 get_default
+
+  $plugin->get_default(qw(key1 key2 ...))
+
+A template can call this method to extract the specified key(s) from
+the default Module::Build arguments created by the normal ModuleBuild
+plugin and have them formatted into a comma-separated list suitable
+for a hash constructor or a method's parameter list.
+
+If any key has no value (or its value is an empty hash or array ref)
+it will be omitted from the list.  If all keys are omitted, the empty
+string is returned.  Otherwise, the result always ends with a comma.
+
+The most common usage would be
+
+    ##{ $plugin->get_default('share_dir') ##}
+
 
 =head2 get_meta
 
@@ -303,7 +351,7 @@ L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Christopher J. Madsen.
+This software is copyright (c) 2011 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -18,7 +18,7 @@ package Dist::Zilla::Role::ModuleInfo;
 #---------------------------------------------------------------------
 
 our $VERSION = '3.04';
-# This file is part of Dist-Zilla-Plugins-CJM 3.04 (December 20, 2010)
+# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
 
 use Moose::Role;
 
@@ -67,8 +67,8 @@ Dist::Zilla::Role::ModuleInfo - Create Module::Metadata object from Dist::Zilla:
 =head1 VERSION
 
 This document describes version 3.04 of
-Dist::Zilla::Role::ModuleInfo, released December 20, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.04.
+Dist::Zilla::Role::ModuleInfo, released May 5, 2011
+as part of Dist-Zilla-Plugins-CJM version 3.05.
 
 =head1 DESCRIPTION
 
@@ -117,7 +117,7 @@ L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Christopher J. Madsen.
+This software is copyright (c) 2011 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

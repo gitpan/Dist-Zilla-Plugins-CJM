@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '3.04';
-# This file is part of Dist-Zilla-Plugins-CJM 3.04 (December 20, 2010)
+our $VERSION = '3.05';
+# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
 
 
 use Moose;
@@ -302,7 +302,9 @@ sub dependency_list
 
   unshift @modules, 'perl' if $requires->{perl};
 
-  my $width = List::Util::max(map { length $_ } @modules) + 1;
+  return 'None.' unless @modules;
+
+  my $width = List::Util::max(6, map { length $_ } @modules) + 1;
 
   my $text = sprintf("  %-${width}s %s\n  ", 'Package', 'Minimum Version');
   $text .= ('-' x $width) . " ---------------\n";
@@ -369,9 +371,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 3.04 of
-Dist::Zilla::Plugin::TemplateCJM, released December 20, 2010
-as part of Dist-Zilla-Plugins-CJM version 3.04.
+This document describes version 3.05 of
+Dist::Zilla::Plugin::TemplateCJM, released May 5, 2011
+as part of Dist-Zilla-Plugins-CJM version 3.05.
 
 =head1 SYNOPSIS
 
@@ -579,6 +581,8 @@ If C<perl> is one of he dependencies, it is listed first.  All other
 dependencies are listed in ASCIIbetical order.  The string will NOT
 end with a newline.
 
+If there are no dependencies, the string C<None.> will be returned.
+
 =head1 DEPENDENCIES
 
 TemplateCJM requires L<Dist::Zilla> (3 or later) and
@@ -608,7 +612,7 @@ L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Christopher J. Madsen.
+This software is copyright (c) 2011 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

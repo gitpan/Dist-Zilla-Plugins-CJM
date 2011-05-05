@@ -1,5 +1,16 @@
 Revision history for Dist-Zilla-Plugins-CJM
 
+3.05   May 5, 2011
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	  - Log more information in debug mode
+	  - Tests now output the log on failure
+
+	Dist::Zilla::Plugin::ModuleBuild::Custom
+	  - Added get_default method
+
+	Dist::Zilla::Plugin::TemplateCJM
+	  - Fix dependency_list to handle no dependencies
+
 3.04   December 20, 2010
 	Dist::Zilla::Role::ModuleInfo
 	  - Use Module::Metadata instead of Module::Build::ModuleInfo
