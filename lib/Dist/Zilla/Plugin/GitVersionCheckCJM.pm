@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '3.05';
-# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
+our $VERSION = '4.00';
+# This file is part of Dist-Zilla-Plugins-CJM 4.00 (November 1, 2011)
 
 
 use version 0.77 ();
@@ -33,7 +33,8 @@ with(
 );
 
 
-use Git::Wrapper ();
+# RECOMMEND PREREQ: Git::Wrapper
+use Git::Wrapper ();            # AutoPrereqs skips this
 
 #---------------------------------------------------------------------
 # Helper sub to run a git command and split on NULs:
@@ -89,6 +90,7 @@ sub munge_file
 
   # Extract information from the module:
   my $pmFile  = $file->name;
+  $self->log_debug("checking $pmFile");
   my $pm_info = $self->get_module_info($file);
 
   my $version = $pm_info->version
@@ -158,9 +160,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 3.05 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released May 5, 2011
-as part of Dist-Zilla-Plugins-CJM version 3.05.
+This document describes version 4.00 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released November 1, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.00.
 
 =head1 SYNOPSIS
 
@@ -211,7 +213,7 @@ listed any number of times.
 
 =head1 DEPENDENCIES
 
-GitVersionCheckCJM requires L<Dist::Zilla> (3 or later).
+GitVersionCheckCJM requires L<Dist::Zilla> (4 or later).
 It also requires L<Git::Wrapper>, although it
 is only listed as a recommended dependency for the distribution (to
 allow people who don't use Git to use the other plugins.)
@@ -228,10 +230,10 @@ No bugs have been reported.
 
 Christopher J. Madsen  S<C<< <perl AT cjmweb.net> >>>
 
-Please report any bugs or feature requests to
-S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>,
+Please report any bugs or feature requests
+to S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>
 or through the web interface at
-L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
+L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM >>.
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
 L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.

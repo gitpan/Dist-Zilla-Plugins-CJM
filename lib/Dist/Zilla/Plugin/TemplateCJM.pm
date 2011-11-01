@@ -17,12 +17,13 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '3.05';
-# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
+our $VERSION = '4.00';
+# This file is part of Dist-Zilla-Plugins-CJM 4.00 (November 1, 2011)
 
 
 use Moose;
 use Moose::Autobox;
+use Moose::Util::TypeConstraints;
 use List::Util ();
 
 # We operate as an InstallTool instead of a FileMunger because the
@@ -44,6 +45,16 @@ has changelog => (
   is   => 'ro',
   isa  => 'Str',
   default  => 'Changes',
+);
+
+
+coerce 'RegexpRef', from 'Str', via { qr/$_/ };
+
+has changelog_re => (
+  is   => 'ro',
+  isa  => 'RegexpRef',
+  coerce   => 1,
+  default  => sub { qr/(\d[\d._]*)\s+(.+)/ },
 );
 
 
@@ -160,8 +171,10 @@ sub check_Changes
 
   my ($release_date, $text);
 
+  my $re = $self->changelog_re;
+
   while (<$Changes>) {
-    if (/^(\d[\d._]*)\s+(.+)/) {
+    if (/^$re/) {
       die "ERROR: $file begins with version $1, expected version $version"
           unless $1 eq $version;
       $release_date = $2;
@@ -170,6 +183,7 @@ sub check_Changes
         last if /^\S/ and --$list_releases <= 0;
         $text .= $_;
       }
+      $text =~ s/\A\s*\n//;     # Remove leading blank lines
       $text =~ s/\s*\z/\n/;     # Normalize trailing whitespace
       die "ERROR: $file contains no history for version $version"
           unless length($text) > 1;
@@ -371,9 +385,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 3.05 of
-Dist::Zilla::Plugin::TemplateCJM, released May 5, 2011
-as part of Dist-Zilla-Plugins-CJM version 3.05.
+This document describes version 4.00 of
+Dist::Zilla::Plugin::TemplateCJM, released November 1, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.00.
 
 =head1 SYNOPSIS
 
@@ -495,6 +509,17 @@ template_error
 This is the name of the F<Changes> file.  It defaults to F<Changes>.
 
 
+=head2 changelog_re
+
+This is the regex used to extract the version and release date from
+the F<Changes> file.  It defaults to C<(\d[\d._]*)\s+(.+)>
+(i.e. version number at beginning of the line, followed by whitespace,
+and everything after that is the release date).  It it automatically
+anchored at the beginning of the line.  Note: your version lines
+I<must not> begin with whitespace.  All other lines I<must> begin with
+whitespace.
+
+
 =head2 changes
 
 This is the number of releases to include in the C<$changes> variable
@@ -585,7 +610,7 @@ If there are no dependencies, the string C<None.> will be returned.
 
 =head1 DEPENDENCIES
 
-TemplateCJM requires L<Dist::Zilla> (3 or later) and
+TemplateCJM requires L<Dist::Zilla> (4 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.
@@ -602,10 +627,10 @@ No bugs have been reported.
 
 Christopher J. Madsen  S<C<< <perl AT cjmweb.net> >>>
 
-Please report any bugs or feature requests to
-S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>,
+Please report any bugs or feature requests
+to S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>
 or through the web interface at
-L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
+L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM >>.
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
 L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.

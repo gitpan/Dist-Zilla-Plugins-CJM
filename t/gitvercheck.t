@@ -5,19 +5,20 @@ use strict;
 use warnings;
 use autodie ':io';
 
-use Test::More;
+use Test::More 0.88;            # done_testing
 
 BEGIN {
   eval "use Git::Wrapper; 1"
       or plan skip_all => "Git::Wrapper required for testing GitVersionCheckCJM";
 
+  # RECOMMEND PREREQ: Test::Fatal
   eval "use Test::Fatal; 1"
       or plan skip_all => "Test::Fatal required for testing GitVersionCheckCJM";
 }
 
 plan tests => 18;
 
-use Dist::Zilla::Tester 'Builder';
+use Test::DZil 'Builder';
 use File::pushd 'pushd';
 use File::Temp ();
 use Path::Class qw(dir file);
@@ -26,6 +27,9 @@ my $stoppedRE = qr/Stopped because of errors/;
 
 #---------------------------------------------------------------------
 # Initialise Git working copy:
+
+my $fakeHome   = File::Temp->newdir;
+$ENV{HOME}     = "$fakeHome"; # Don't want user's ~/.gitconfig to interfere
 
 my $tempdir    = File::Temp->newdir;
 my $gitRoot    = dir("$tempdir")->absolute;
@@ -128,7 +132,12 @@ sub diag_log
 
   {
     my $wd = pushd($tzil->tempdir->subdir("source"));
-    diag("git status:\n", `git status`);
+    diag(
+      `git --version`,
+      "git diff_index:\n", `git diff_index HEAD --name-only`,
+      "git ls_files:\n",   `git ls_files -o --exclude-standard`,
+      "git status:\n",     `git status`,
+    );
   }
 } # end diag_log
 

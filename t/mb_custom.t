@@ -3,9 +3,9 @@
 
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More 0.88 tests => 3; # done_testing
 
-use Dist::Zilla::Tester;
+use Test::DZil 'Builder';
 
 #---------------------------------------------------------------------
 sub make_re
@@ -19,7 +19,7 @@ sub make_re
 
 #---------------------------------------------------------------------
 {
-  my $tzil = Dist::Zilla::Tester->from_config(
+  my $tzil = Builder->from_config(
     { dist_root => 'corpus/DZT' },
     {
       add_files => {

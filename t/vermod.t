@@ -3,9 +3,9 @@
 
 use strict;
 use warnings;
-use Test::More tests => 1;
+use Test::More 0.88 tests => 1; # done_testing
 
-use Dist::Zilla::Tester;
+use Test::DZil 'Builder';
 
 sub make_ini
 {
@@ -20,7 +20,7 @@ END START
 } # end make_ini
 
 {
-  my $tzil = Dist::Zilla::Tester->from_config(
+  my $tzil = Builder->from_config(
     { dist_root => 'corpus/DZT' },
     {
       add_files => {

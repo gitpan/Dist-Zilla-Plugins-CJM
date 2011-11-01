@@ -18,8 +18,8 @@ package Dist::Zilla::Plugin::ArchiveRelease;
 #---------------------------------------------------------------------
 
 use 5.008;
-our $VERSION = '3.01';
-# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
+our $VERSION = '4.00';
+# This file is part of Dist-Zilla-Plugins-CJM 4.00 (November 1, 2011)
 
 
 use Moose;
@@ -49,6 +49,7 @@ sub directory
   # Convert ~ to home directory:
   if ($dir =~ /^~/) {
     require File::HomeDir;
+    File::HomeDir->VERSION(0.81);
 
     $dir =~ s/^~(\w+)/ File::HomeDir->users_home("$1") /e;
     $dir =~ s/^~/      File::HomeDir->my_home /e;
@@ -147,9 +148,9 @@ Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive dir
 
 =head1 VERSION
 
-This document describes version 3.01 of
-Dist::Zilla::Plugin::ArchiveRelease, released May 5, 2011
-as part of Dist-Zilla-Plugins-CJM version 3.05.
+This document describes version 4.00 of
+Dist::Zilla::Plugin::ArchiveRelease, released November 1, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.00.
 
 =head1 SYNOPSIS
 
@@ -201,10 +202,10 @@ No bugs have been reported.
 
 Christopher J. Madsen  S<C<< <perl AT cjmweb.net> >>>
 
-Please report any bugs or feature requests to
-S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>,
+Please report any bugs or feature requests
+to S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>
 or through the web interface at
-L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
+L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM >>.
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
 L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.

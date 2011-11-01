@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 3.05, released May 5, 2011
+Dist-Zilla-Plugins-CJM version 4.00, released November 1, 2011
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -29,37 +29,41 @@ To install these modules, run the following commands:
 
 DEPENDENCIES
 
-  Package                Minimum Version
-  ---------------------- ---------------
-  CPAN::Meta::Converter   2.101550
-  Dist::Zilla             3
-  File::Copy              
-  File::HomeDir           0.81
-  File::Temp              0.19
-  List::Util              
-  Module::Metadata        
-  Moose                   0.65
-  Moose::Autobox          0.09
-  Path::Class             
-  Scalar::Util            
-  autodie                 
-  version                 0.77
+  Package                       Minimum Version
+  ----------------------------- ---------------
+  perl                           5.008
+  CPAN::Meta::Converter          2.101550
+  Data::Dumper                   
+  Dist::Zilla                    4
+  File::Copy                     
+  File::HomeDir                  0.81
+  File::Temp                     0.19
+  List::Util                     
+  Module::Metadata               
+  Moose                          
+  Moose::Autobox                 
+  Moose::Role                    
+  Moose::Util::TypeConstraints   
+  Path::Class                    
+  Scalar::Util                   
+  Version::Requirements          0.100630
+  autodie                        
+  namespace::autoclean           
+  version                        0.77
 
 
 
 CHANGES
-    Here's what's new in version 3.05 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.00 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::GitVersionCheckCJM
-	  - Log more information in debug mode
-	  - Tests now output the log on failure
-
-	Dist::Zilla::Plugin::ModuleBuild::Custom
-	  - Added get_default method
+	Dist::Zilla::Plugin::RecommendedPrereqs
+	  - New plugin
 
 	Dist::Zilla::Plugin::TemplateCJM
-	  - Fix dependency_list to handle no dependencies
+	  - Add changelog_re parameter
+
+	- Tests now use Test::DZil
 
 
 

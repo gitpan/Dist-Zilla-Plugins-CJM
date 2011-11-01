@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '3.05';
-# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
+our $VERSION = '4.00';
+# This file is part of Dist-Zilla-Plugins-CJM 4.00 (November 1, 2011)
 
 
 use Moose;
@@ -48,6 +48,7 @@ sub _build_distmeta1
   my $self = shift;
 
   require CPAN::Meta::Converter;
+  CPAN::Meta::Converter->VERSION(2.101550); # improved downconversion
 
   my $converter = CPAN::Meta::Converter->new($self->zilla->distmeta);
   return $converter->convert(version => '1.4');
@@ -194,9 +195,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 3.05 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released May 5, 2011
-as part of Dist-Zilla-Plugins-CJM version 3.05.
+This document describes version 4.00 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released November 1, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.00.
 
 =head1 SYNOPSIS
 
@@ -317,7 +318,7 @@ distribution's prerequisites.
 
 =head1 DEPENDENCIES
 
-ModuleBuild::Custom requires L<Dist::Zilla> (3 or later) and
+ModuleBuild::Custom requires L<Dist::Zilla> (4 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.
@@ -341,10 +342,10 @@ No bugs have been reported.
 
 Christopher J. Madsen  S<C<< <perl AT cjmweb.net> >>>
 
-Please report any bugs or feature requests to
-S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>,
+Please report any bugs or feature requests
+to S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>
 or through the web interface at
-L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
+L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM >>.
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
 L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.

@@ -17,13 +17,13 @@ package Dist::Zilla::Role::ModuleInfo;
 # ABSTRACT: Create Module::Metadata object from Dist::Zilla::File
 #---------------------------------------------------------------------
 
-our $VERSION = '3.04';
-# This file is part of Dist-Zilla-Plugins-CJM 3.05 (May 5, 2011)
+our $VERSION = '4.00';
+# This file is part of Dist-Zilla-Plugins-CJM 4.00 (November 1, 2011)
 
 use Moose::Role;
 
 use autodie ':io';
-use File::Temp ();
+use File::Temp 0.19 ();         # need newdir
 use Module::Metadata ();
 use Path::Class qw(dir file);
 
@@ -66,9 +66,9 @@ Dist::Zilla::Role::ModuleInfo - Create Module::Metadata object from Dist::Zilla:
 
 =head1 VERSION
 
-This document describes version 3.04 of
-Dist::Zilla::Role::ModuleInfo, released May 5, 2011
-as part of Dist-Zilla-Plugins-CJM version 3.05.
+This document describes version 4.00 of
+Dist::Zilla::Role::ModuleInfo, released November 1, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.00.
 
 =head1 DESCRIPTION
 
@@ -107,10 +107,10 @@ No bugs have been reported.
 
 Christopher J. Madsen  S<C<< <perl AT cjmweb.net> >>>
 
-Please report any bugs or feature requests to
-S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>,
+Please report any bugs or feature requests
+to S<C<< <bug-Dist-Zilla-Plugins-CJM AT rt.cpan.org> >>>
 or through the web interface at
-L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM>
+L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM >>.
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
 L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
