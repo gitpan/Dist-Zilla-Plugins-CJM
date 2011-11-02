@@ -15,7 +15,8 @@ my %WriteMakefileArgs = (
     "File::pushd" => 0,
     "Parse::CPAN::Meta" => 0,
     "Test::DZil" => 0,
-    "Test::More" => "0.88"
+    "Test::More" => "0.88",
+    "Try::Tiny" => 0
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -44,7 +45,7 @@ my %WriteMakefileArgs = (
     "namespace::autoclean" => 0,
     "version" => "0.77"
   },
-  "VERSION" => "4.00",
+  "VERSION" => "4.01",
   "test" => {
     "TESTS" => "t/*.t"
   }

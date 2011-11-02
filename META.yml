@@ -7,6 +7,7 @@ build_requires:
   Parse::CPAN::Meta: 0
   Test::DZil: 0
   Test::More: 0.88
+  Try::Tiny: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
@@ -44,7 +45,7 @@ requires:
   version: 0.77
 resources:
   repository: git://github.com/madsen/dist-zilla-plugins-cjm.git
-version: 4.00
+version: 4.01
 x_Dist_Zilla:
   plugins:
     -

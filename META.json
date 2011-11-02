@@ -62,7 +62,8 @@
             "File::pushd" : 0,
             "Parse::CPAN::Meta" : 0,
             "Test::DZil" : 0,
-            "Test::More" : "0.88"
+            "Test::More" : "0.88",
+            "Try::Tiny" : 0
          }
       }
    },
@@ -74,7 +75,7 @@
          "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.00",
+   "version" : "4.01",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
