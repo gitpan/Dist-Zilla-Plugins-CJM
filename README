@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.01, released November 2, 2011
+Dist-Zilla-Plugins-CJM version 4.02, released November 3, 2011
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -54,10 +54,10 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.01 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.02 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Fixed buggy diagnostics in gitvercheck.t
+	- Fixed the bogus failures in gitvercheck.t
 	- No changes to plugins
 
 
