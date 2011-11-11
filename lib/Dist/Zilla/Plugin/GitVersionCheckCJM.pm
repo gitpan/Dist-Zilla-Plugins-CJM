@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '4.00';
-# This file is part of Dist-Zilla-Plugins-CJM 4.02 (November 3, 2011)
+our $VERSION = '4.03';
+# This file is part of Dist-Zilla-Plugins-CJM 4.03 (November 11, 2011)
 
 
 use version 0.77 ();
@@ -28,7 +28,7 @@ with(
   'Dist::Zilla::Role::FileMunger',
   'Dist::Zilla::Role::ModuleInfo',
   'Dist::Zilla::Role::FileFinderUser' => {
-    default_finders => [ ':InstallModules' ],
+    default_finders => [ qw(:InstallModules :IncModules :ExecFiles) ],
   },
 );
 
@@ -160,9 +160,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 4.00 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released November 3, 2011
-as part of Dist-Zilla-Plugins-CJM version 4.02.
+This document describes version 4.03 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released November 11, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.03.
 
 =head1 SYNOPSIS
 

@@ -1,13 +1,15 @@
-use Test::More tests => 8;
+use Test::More tests => 10;
 
-diag("Testing Dist-Zilla-Plugins-CJM 4.02");
+diag("Testing Dist-Zilla-Plugins-CJM 4.03");
 
 use_ok('Dist::Zilla::Plugin::ArchiveRelease');
+use_ok('Dist::Zilla::Plugin::MakeMaker::Custom');
 use_ok('Dist::Zilla::Plugin::Metadata');
 use_ok('Dist::Zilla::Plugin::ModuleBuild::Custom');
 use_ok('Dist::Zilla::Plugin::RecommendedPrereqs');
 use_ok('Dist::Zilla::Plugin::TemplateCJM');
 use_ok('Dist::Zilla::Plugin::VersionFromModule');
+use_ok('Dist::Zilla::Role::HashDumper');
 use_ok('Dist::Zilla::Role::ModuleInfo');
 
 SKIP: {

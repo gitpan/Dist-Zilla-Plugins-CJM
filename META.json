@@ -26,13 +26,13 @@
       },
       "runtime" : {
          "recommends" : {
-            "Foo::Bar" : "1.0",
             "Git::Wrapper" : 0
          },
          "requires" : {
             "CPAN::Meta::Converter" : "2.101550",
             "Data::Dumper" : 0,
             "Dist::Zilla" : "4",
+            "Dist::Zilla::Plugin::MakeMaker" : 0,
             "File::Copy" : 0,
             "File::HomeDir" : "0.81",
             "File::Temp" : "0.19",
@@ -49,9 +49,6 @@
             "namespace::autoclean" : 0,
             "perl" : "5.008",
             "version" : "0.77"
-         },
-         "suggests" : {
-            "Foo::Suggested" : 0
          }
       },
       "test" : {
@@ -75,9 +72,14 @@
          "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.02",
+   "version" : "4.03",
    "x_Dist_Zilla" : {
       "plugins" : [
+         {
+            "class" : "Dist::Zilla::Plugin::FileFinder::Filter",
+            "name" : ":CheckRecommend",
+            "version" : null
+         },
          {
             "class" : "Dist::Zilla::Plugin::GatherDir",
             "name" : "CJM/GatherDir",
@@ -152,9 +154,14 @@
             "version" : "4.00"
          },
          {
+            "class" : "Dist::Zilla::Plugin::CheckPrereqsIndexed",
+            "name" : "CJM/CheckPrereqsIndexed",
+            "version" : "0.006"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::GitVersionCheckCJM",
             "name" : "CJM/GitVersionCheckCJM",
-            "version" : "4.00"
+            "version" : "4.03"
          },
          {
             "class" : "Dist::Zilla::Plugin::TemplateCJM",

@@ -21,12 +21,12 @@ no_index:
   directory:
     - corpus
 recommends:
-  Foo::Bar: 1.0
   Git::Wrapper: 0
 requires:
   CPAN::Meta::Converter: 2.101550
   Data::Dumper: 0
   Dist::Zilla: 4
+  Dist::Zilla::Plugin::MakeMaker: 0
   File::Copy: 0
   File::HomeDir: 0.81
   File::Temp: 0.19
@@ -45,9 +45,13 @@ requires:
   version: 0.77
 resources:
   repository: git://github.com/madsen/dist-zilla-plugins-cjm.git
-version: 4.02
+version: 4.03
 x_Dist_Zilla:
   plugins:
+    -
+      class: Dist::Zilla::Plugin::FileFinder::Filter
+      name: ':CheckRecommend'
+      version: ~
     -
       class: Dist::Zilla::Plugin::GatherDir
       name: CJM/GatherDir
@@ -107,9 +111,13 @@ x_Dist_Zilla:
       name: CJM/RecommendedPrereqs
       version: 4.00
     -
+      class: Dist::Zilla::Plugin::CheckPrereqsIndexed
+      name: CJM/CheckPrereqsIndexed
+      version: 0.006
+    -
       class: Dist::Zilla::Plugin::GitVersionCheckCJM
       name: CJM/GitVersionCheckCJM
-      version: 4.00
+      version: 4.03
     -
       class: Dist::Zilla::Plugin::TemplateCJM
       name: CJM/TemplateCJM

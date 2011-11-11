@@ -1,10 +1,10 @@
 #---------------------------------------------------------------------
-package Dist::Zilla::Role::ModuleInfo;
+package Dist::Zilla::Role::HashDumper;
 #
-# Copyright 2010 Christopher J. Madsen
+# Copyright 2011 Christopher J. Madsen
 #
 # Author: Christopher J. Madsen <perl@cjmweb.net>
-# Created: 25 Sep 2009
+# Created: 4 Nov 2011
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -14,46 +14,64 @@ package Dist::Zilla::Role::ModuleInfo;
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either the
 # GNU General Public License or the Artistic License for more details.
 #
-# ABSTRACT: Create Module::Metadata object from Dist::Zilla::File
+# ABSTRACT: Dump selected hash keys as a string
 #---------------------------------------------------------------------
 
-our $VERSION = '4.00';
+our $VERSION = '4.03';
 # This file is part of Dist-Zilla-Plugins-CJM 4.03 (November 11, 2011)
 
 use Moose::Role;
 
-use autodie ':io';
-use File::Temp 0.19 ();         # need newdir
-use Module::Metadata ();
-use Path::Class qw(dir file);
+use namespace::autoclean;
+
+use Scalar::Util 'reftype';
 
 
-sub get_module_info
+sub hash_as_string
+{
+  my ($self, $hash) = @_;
+
+  # Format the hash as a string:
+  require Data::Dumper;
+
+  my $data = Data::Dumper->new([ $hash ])
+      ->Indent(1)->Sortkeys(1)->Terse(1)->Dump;
+
+  if ($data eq "{}\n") {
+    $data = '';
+  } else {
+    $data =~ s/^\{\n//     or die "Dump prefix! $data";
+    $data =~ s/\n\}\n\z/,/ or die "Dump postfix! $data";
+  }
+
+  return $data;
+} # end hash_as_string
+
+
+sub extract_keys
 {
   my $self = shift;
-  my $file = shift;
-  # Any additional parameters get passed to M::Metadata->new_from_file
+  my $type = shift;
+  my $hash = shift;
 
-  # To be safe, reset the global variables controlling IO to their defaults:
-  local ($/, $,, $\) = "\n";
+  # Extract the wanted keys from the hash:
+  my %want;
 
-  # Module::Metadata doesn't have a new_from_string method,
-  # so we'll write the current contents to a temporary file:
+  foreach my $key (@_) {
+    $self->log_debug("Fetching $type key $key");
+    next unless defined $hash->{$key};
 
-  my $tempdirObject = File::Temp->newdir();
-  my $dir     = dir("$tempdirObject");
-  my $modPath = file($file->name);
+    # Skip keys with empty value:
+    my $reftype = reftype($hash->{$key});
+    if (not $reftype) {}
+    elsif ($reftype eq 'HASH')  { next unless %{ $hash->{$key} } }
+    elsif ($reftype eq 'ARRAY') { next unless @{ $hash->{$key} } }
 
-  # Module::Metadata only cares about the basename of the file:
-  my $tempname = $dir->file($modPath->basename);
+    $want{$key} = $hash->{$key};
+  } # end foreach $key
 
-  open(my $temp, '>', $tempname);
-  print $temp $file->content;
-  close $temp;
-
-  return Module::Metadata->new_from_file("$tempname", @_)
-      or die "Unable to get module info from " . $file->name . "\n";
-} # end get_module_info
+  return $self->hash_as_string(\%want);
+} # end _extract_keys
 
 no Moose::Role;
 1;
@@ -62,38 +80,53 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Role::ModuleInfo - Create Module::Metadata object from Dist::Zilla::File
+Dist::Zilla::Role::HashDumper - Dump selected hash keys as a string
 
 =head1 VERSION
 
-This document describes version 4.00 of
-Dist::Zilla::Role::ModuleInfo, released November 11, 2011
+This document describes version 4.03 of
+Dist::Zilla::Role::HashDumper, released November 11, 2011
 as part of Dist-Zilla-Plugins-CJM version 4.03.
 
 =head1 DESCRIPTION
 
-Plugins implementing ModuleInfo may call their own C<get_module_info>
-method to construct a L<Module::Metadata> object.  (Module::Metadata
-is the new name for Module::Build::ModuleInfo, now that it's been
-split from the Module-Build distribution.)
+Plugins implementing HashDumper may call their own C<extract_keys>
+method to extract selected keys from a hash and return a string
+suitable for injecting into Perl code.  They may also call the
+C<hash_as_string> method to do the same for an entire hash.
 
 =head1 METHODS
 
-=head2 get_module_info
+=head2 extract_keys
 
-  my $info = $plugin->get_module_info($file);
+  my $string = $plugin->extract_keys($name, \%hash, @keys);
+  eval "%new_hash = ($string);";
 
-This constructs a Module::Metadata object from the contents
-of a C<$file> object that does Dist::Zilla::Role::File.  Any additional
-arguments are passed along to C<< Module::Metadata->new_from_file >>.
+This constructs a string of properly quoted keys and values from a
+selected keys in a hash.  (Note that C<\%hash> is a reference, but
+C<@keys> is not.)  The C<$name> is used only in a log_debug message.
+
+If any key has no value (or its value is an empty hash or array ref)
+it will be omitted from the list.  If all keys are omitted, the empty
+string is returned.  Otherwise, the result always ends with a comma.
+
+
+=head2 hash_as_string
+
+  my $string = $plugin->hash_as_string(\%hash);
+  eval "%new_hash = ($string);";
+
+This constructs a string of properly quoted keys and values from a
+hash.  If the hash is empty, the empty string will be returned.
+Otherwise, the result always ends with a comma.
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
-Dist::Zilla::Role::ModuleInfo requires no configuration files or environment variables.
+Dist::Zilla::Role::HashDumper requires no configuration files or environment variables.
 
 =head1 DEPENDENCIES
 
-L<Module::Metadata>.
+L<Data::Dumper>.
 
 =head1 INCOMPATIBILITIES
 
