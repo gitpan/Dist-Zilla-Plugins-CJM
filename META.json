@@ -32,6 +32,7 @@
             "CPAN::Meta::Converter" : "2.101550",
             "Data::Dumper" : 0,
             "Dist::Zilla" : "4",
+            "Dist::Zilla::Plugin::InlineFiles" : 0,
             "Dist::Zilla::Plugin::MakeMaker" : 0,
             "File::Copy" : 0,
             "File::HomeDir" : "0.81",
@@ -72,7 +73,7 @@
          "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.03",
+   "version" : "4.04",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -111,6 +112,11 @@
             "version" : "4.300003"
          },
          {
+            "class" : "Dist::Zilla::Plugin::Test::PrereqsFromMeta",
+            "name" : "CJM/Test::PrereqsFromMeta",
+            "version" : "4.04"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::PodSyntaxTests",
             "name" : "CJM/PodSyntaxTests",
             "version" : "4.300003"
@@ -131,7 +137,7 @@
                "Pod::Loom version" : "0.05"
             },
             "name" : "CJM/PodLoom",
-            "version" : "4.01"
+            "version" : "4.10"
          },
          {
             "class" : "Dist::Zilla::Plugin::MakeMaker",
@@ -221,7 +227,7 @@
          {
             "class" : "Dist::Zilla::Plugin::AutoPrereqs",
             "name" : "AutoPrereqs",
-            "version" : "4.300003"
+            "version" : null
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",
