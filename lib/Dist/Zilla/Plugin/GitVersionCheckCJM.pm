@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.03';
-# This file is part of Dist-Zilla-Plugins-CJM 4.04 (December 12, 2011)
+# This file is part of Dist-Zilla-Plugins-CJM 4.05 (December 21, 2011)
 
 
 use version 0.77 ();
@@ -161,8 +161,8 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 =head1 VERSION
 
 This document describes version 4.03 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released December 12, 2011
-as part of Dist-Zilla-Plugins-CJM version 4.04.
+Dist::Zilla::Plugin::GitVersionCheckCJM, released December 21, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.05.
 
 =head1 SYNOPSIS
 

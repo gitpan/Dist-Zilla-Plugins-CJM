@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::RecommendedPrereqs;
 # ABSTRACT: Look for comments recommending prerequisites
 #---------------------------------------------------------------------
 
-our $VERSION = '4.00';
-# This file is part of Dist-Zilla-Plugins-CJM 4.04 (December 12, 2011)
+our $VERSION = '4.05';
+# This file is part of Dist-Zilla-Plugins-CJM 4.05 (December 21, 2011)
 
 
 use 5.008;
@@ -51,6 +51,8 @@ sub register_prereqs
     [ test    => 'found_test_files' ],
   );
 
+  my %runtime;
+
   for my $fileset (@sets) {
     my ($phase, $method) = @$fileset;
 
@@ -70,6 +72,15 @@ sub register_prereqs
     # we're done, add what we've found
     while (my ($type, $req) = each %req) {
       $req = $req->as_string_hash;
+
+      if ($phase eq 'runtime') {
+        $runtime{$type} = $req;
+      } else {
+        delete $req->{$_} for
+            grep { exists $req->{$_} and $runtime{$type}{$_} ge $req->{$_} }
+            keys %{ $runtime{$type} || {} };
+      }
+
       $self->zilla->register_prereqs({ phase => $phase, type => "\L${type}s" },
                                      %$req) if %$req;
     }
@@ -90,9 +101,9 @@ Dist::Zilla::Plugin::RecommendedPrereqs - Look for comments recommending prerequ
 
 =head1 VERSION
 
-This document describes version 4.00 of
-Dist::Zilla::Plugin::RecommendedPrereqs, released December 12, 2011
-as part of Dist-Zilla-Plugins-CJM version 4.04.
+This document describes version 4.05 of
+Dist::Zilla::Plugin::RecommendedPrereqs, released December 21, 2011
+as part of Dist-Zilla-Plugins-CJM version 4.05.
 
 =head1 SYNOPSIS
 
