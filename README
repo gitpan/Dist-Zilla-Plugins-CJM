@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.05, released December 21, 2011
+Dist-Zilla-Plugins-CJM version 4.06, released January 2, 2012
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -33,6 +33,7 @@ DEPENDENCIES
   --------------------------------- ---------------
   perl                               5.008
   CPAN::Meta::Converter              2.101550
+  CPAN::Meta::Requirements           
   Data::Dumper                       
   Dist::Zilla                        4
   Dist::Zilla::Plugin::InlineFiles   
@@ -48,7 +49,6 @@ DEPENDENCIES
   Moose::Util::TypeConstraints       
   Path::Class                        
   Scalar::Util                       
-  Version::Requirements              0.100630
   autodie                            
   namespace::autoclean               
   version                            0.77
@@ -56,17 +56,17 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.05 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.06 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
 	Dist::Zilla::Plugin::RecommendedPrereqs
-	  - Filter runtime recommendations out of test recommendations
+	  - use CPAN::Meta::Requirements (new name of Version::Requirements)
 
 
 
 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Christopher J. Madsen.
+This software is copyright (c) 2012 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::RecommendedPrereqs;
 # ABSTRACT: Look for comments recommending prerequisites
 #---------------------------------------------------------------------
 
-our $VERSION = '4.05';
-# This file is part of Dist-Zilla-Plugins-CJM 4.05 (December 21, 2011)
+our $VERSION = '4.06';
+# This file is part of Dist-Zilla-Plugins-CJM 4.06 (January 2, 2012)
 
 
 use 5.008;
@@ -39,7 +39,7 @@ use namespace::autoclean;
 
 #=====================================================================
 
-use Version::Requirements 0.100630 ();  # merge with 0-min bug
+use CPAN::Meta::Requirements ();
 use version ();
 
 sub register_prereqs
@@ -56,7 +56,7 @@ sub register_prereqs
   for my $fileset (@sets) {
     my ($phase, $method) = @$fileset;
 
-    my %req = map { $_ => Version::Requirements->new } qw(RECOMMEND SUGGEST);
+    my %req = map { $_ => CPAN::Meta::Requirements->new } qw(RECOMMEND SUGGEST);
 
     my $files = $self->$method;
 
@@ -101,9 +101,9 @@ Dist::Zilla::Plugin::RecommendedPrereqs - Look for comments recommending prerequ
 
 =head1 VERSION
 
-This document describes version 4.05 of
-Dist::Zilla::Plugin::RecommendedPrereqs, released December 21, 2011
-as part of Dist-Zilla-Plugins-CJM version 4.05.
+This document describes version 4.06 of
+Dist::Zilla::Plugin::RecommendedPrereqs, released January 2, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.06.
 
 =head1 SYNOPSIS
 
@@ -159,7 +159,7 @@ L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Christopher J. Madsen.
+This software is copyright (c) 2012 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

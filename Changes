@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Plugins-CJM
 
+4.06   January 2, 2012
+	Dist::Zilla::Plugin::RecommendedPrereqs
+	  - use CPAN::Meta::Requirements (new name of Version::Requirements)
+
 4.05   December 21, 2011
 	Dist::Zilla::Plugin::RecommendedPrereqs
 	  - Filter runtime recommendations out of test recommendations

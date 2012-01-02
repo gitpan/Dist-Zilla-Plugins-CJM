@@ -27,6 +27,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Plugins::CJM",
   "PREREQ_PM" => {
     "CPAN::Meta::Converter" => "2.101550",
+    "CPAN::Meta::Requirements" => 0,
     "Data::Dumper" => 0,
     "Dist::Zilla" => 4,
     "Dist::Zilla::Plugin::InlineFiles" => 0,
@@ -42,12 +43,11 @@ my %WriteMakefileArgs = (
     "Moose::Util::TypeConstraints" => 0,
     "Path::Class" => 0,
     "Scalar::Util" => 0,
-    "Version::Requirements" => "0.100630",
     "autodie" => 0,
     "namespace::autoclean" => 0,
     "version" => "0.77"
   },
-  "VERSION" => "4.05",
+  "VERSION" => "4.06",
   "test" => {
     "TESTS" => "t/*.t"
   }
