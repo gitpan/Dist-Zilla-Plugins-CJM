@@ -19,7 +19,7 @@ package Dist::Zilla::Plugin::ArchiveRelease;
 
 use 5.008;
 our $VERSION = '4.00';
-# This file is part of Dist-Zilla-Plugins-CJM 4.06 (January 2, 2012)
+# This file is part of Dist-Zilla-Plugins-CJM 4.07 (February 22, 2012)
 
 
 use Moose;
@@ -149,8 +149,8 @@ Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive dir
 =head1 VERSION
 
 This document describes version 4.00 of
-Dist::Zilla::Plugin::ArchiveRelease, released January 2, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.06.
+Dist::Zilla::Plugin::ArchiveRelease, released February 22, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.07.
 
 =head1 SYNOPSIS
 

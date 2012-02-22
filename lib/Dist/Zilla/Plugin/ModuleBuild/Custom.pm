@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '4.03';
-# This file is part of Dist-Zilla-Plugins-CJM 4.06 (January 2, 2012)
+our $VERSION = '4.07';
+# This file is part of Dist-Zilla-Plugins-CJM 4.07 (February 22, 2012)
 
 
 use Moose;
@@ -155,9 +155,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 4.03 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released January 2, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.06.
+This document describes version 4.07 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released February 22, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.07.
 
 =head1 SYNOPSIS
 
@@ -282,7 +282,7 @@ distribution's prerequisites.
 
 =head1 SEE ALSO
 
-The <MakeMaker::Custom|Dist::Zilla::Plugin::MakeMaker::Custom>
+The L<MakeMaker::Custom|Dist::Zilla::Plugin::MakeMaker::Custom>
 plugin does basically the same thing as this plugin, but for
 F<Makefile.PL> (if you prefer L<ExtUtils::MakeMaker>).
 
@@ -294,7 +294,7 @@ template_error
 
 =head1 DEPENDENCIES
 
-ModuleBuild::Custom requires L<Dist::Zilla> (4 or later) and
+ModuleBuild::Custom requires L<Dist::Zilla> (4.300009 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.

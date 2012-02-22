@@ -29,9 +29,9 @@ my %WriteMakefileArgs = (
     "CPAN::Meta::Converter" => "2.101550",
     "CPAN::Meta::Requirements" => 0,
     "Data::Dumper" => 0,
-    "Dist::Zilla" => 4,
+    "Dist::Zilla" => "4.300009",
     "Dist::Zilla::Plugin::InlineFiles" => 0,
-    "Dist::Zilla::Plugin::MakeMaker" => 0,
+    "Dist::Zilla::Plugin::MakeMaker" => "4.300009",
     "File::Copy" => 0,
     "File::HomeDir" => "0.81",
     "File::Temp" => "0.19",
@@ -47,7 +47,7 @@ my %WriteMakefileArgs = (
     "namespace::autoclean" => 0,
     "version" => "0.77"
   },
-  "VERSION" => "4.06",
+  "VERSION" => "4.07",
   "test" => {
     "TESTS" => "t/*.t"
   }

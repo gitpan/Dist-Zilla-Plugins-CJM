@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.03';
-# This file is part of Dist-Zilla-Plugins-CJM 4.06 (January 2, 2012)
+# This file is part of Dist-Zilla-Plugins-CJM 4.07 (February 22, 2012)
 
 
 use version 0.77 ();
@@ -161,8 +161,8 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 =head1 VERSION
 
 This document describes version 4.03 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released January 2, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.06.
+Dist::Zilla::Plugin::GitVersionCheckCJM, released February 22, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.07.
 
 =head1 SYNOPSIS
 
@@ -213,7 +213,7 @@ listed any number of times.
 
 =head1 DEPENDENCIES
 
-GitVersionCheckCJM requires L<Dist::Zilla> (4 or later).
+GitVersionCheckCJM requires L<Dist::Zilla> (4.300009 or later).
 It also requires L<Git::Wrapper>, although it
 is only listed as a recommended dependency for the distribution (to
 allow people who don't use Git to use the other plugins.)
