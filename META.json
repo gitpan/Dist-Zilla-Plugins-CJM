@@ -4,7 +4,7 @@
       "Christopher J. Madsen <perl@cjmweb.net>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300009, CPAN::Meta::Converter version 2.113640",
+   "generated_by" : "Dist::Zilla version 4.300009, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -26,42 +26,42 @@
       },
       "runtime" : {
          "recommends" : {
-            "Git::Wrapper" : 0
+            "Git::Wrapper" : "0"
          },
          "requires" : {
             "CPAN::Meta::Converter" : "2.101550",
-            "CPAN::Meta::Requirements" : 0,
-            "Data::Dumper" : 0,
+            "CPAN::Meta::Requirements" : "0",
+            "Data::Dumper" : "0",
             "Dist::Zilla" : "4.300009",
-            "Dist::Zilla::Plugin::InlineFiles" : 0,
+            "Dist::Zilla::Plugin::InlineFiles" : "0",
             "Dist::Zilla::Plugin::MakeMaker" : "4.300009",
-            "File::Copy" : 0,
+            "File::Copy" : "0",
             "File::HomeDir" : "0.81",
             "File::Temp" : "0.19",
-            "List::Util" : 0,
-            "Module::Metadata" : 0,
-            "Moose" : 0,
-            "Moose::Autobox" : 0,
-            "Moose::Role" : 0,
-            "Moose::Util::TypeConstraints" : 0,
-            "Path::Class" : 0,
-            "Scalar::Util" : 0,
-            "autodie" : 0,
-            "namespace::autoclean" : 0,
+            "List::Util" : "0",
+            "Module::Metadata" : "0",
+            "Moose" : "0",
+            "Moose::Autobox" : "0",
+            "Moose::Role" : "0",
+            "Moose::Util::TypeConstraints" : "0",
+            "Path::Class" : "0",
+            "Scalar::Util" : "0",
+            "autodie" : "0",
+            "namespace::autoclean" : "0",
             "perl" : "5.008",
             "version" : "0.77"
          }
       },
       "test" : {
          "recommends" : {
-            "Test::Fatal" : 0
+            "Test::Fatal" : "0"
          },
          "requires" : {
-            "File::pushd" : 0,
-            "Parse::CPAN::Meta" : 0,
-            "Test::DZil" : 0,
+            "File::pushd" : "0",
+            "Parse::CPAN::Meta" : "0",
+            "Test::DZil" : "0",
             "Test::More" : "0.88",
-            "Try::Tiny" : 0
+            "Try::Tiny" : "0"
          }
       }
    },
@@ -73,7 +73,7 @@
          "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.07",
+   "version" : "4.08",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

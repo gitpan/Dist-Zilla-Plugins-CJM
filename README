@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.07, released February 22, 2012
+Dist-Zilla-Plugins-CJM version 4.08, released April 28, 2012
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -56,15 +56,13 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.07 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.08 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::MakeMaker::Custom
-	  - now compatible with (and requires) Dist::Zilla 4.300009
-	  - fix typo in documentation
+	- no functional changes in this release, just improved docs
 
-	Dist::Zilla::Plugin::ModuleBuild::Custom
-	  - fix typo in documentation
+	Dist::Zilla::Plugin::MakeMaker::Custom
+	  - document how it compares to the MakeMaker::Awesome plugin
 
 
 

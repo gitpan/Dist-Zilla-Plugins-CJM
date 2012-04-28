@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::Metadata;
 #---------------------------------------------------------------------
 
 our $VERSION = '3.03';
-# This file is part of Dist-Zilla-Plugins-CJM 4.07 (February 22, 2012)
+# This file is part of Dist-Zilla-Plugins-CJM 4.08 (April 28, 2012)
 
 
 use Moose;
@@ -79,8 +79,8 @@ Dist::Zilla::Plugin::Metadata - Add arbitrary keys to distmeta
 =head1 VERSION
 
 This document describes version 3.03 of
-Dist::Zilla::Plugin::Metadata, released February 22, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.07.
+Dist::Zilla::Plugin::Metadata, released April 28, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.08.
 
 =head1 SYNOPSIS
 
