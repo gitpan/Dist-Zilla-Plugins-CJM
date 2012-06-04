@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.07';
-# This file is part of Dist-Zilla-Plugins-CJM 4.08 (April 28, 2012)
+# This file is part of Dist-Zilla-Plugins-CJM 4.09 (June 4, 2012)
 
 
 use Moose;
@@ -156,8 +156,8 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 =head1 VERSION
 
 This document describes version 4.07 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released April 28, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.08.
+Dist::Zilla::Plugin::ModuleBuild::Custom, released June 4, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.09.
 
 =head1 SYNOPSIS
 

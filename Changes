@@ -1,5 +1,12 @@
 Revision history for Dist-Zilla-Plugins-CJM
 
+Note: the version number of a plugin is the version of the dist in
+which it was last changed.
+
+4.09   June 4, 2012
+	Dist::Zilla::Plugin::TemplateCJM
+	  - add report_versions parameter
+
 4.08   April 28, 2012
 	- no functional changes in this release, just improved docs
 

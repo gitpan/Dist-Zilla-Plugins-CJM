@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '4.00';
-# This file is part of Dist-Zilla-Plugins-CJM 4.08 (April 28, 2012)
+our $VERSION = '4.09';
+# This file is part of Dist-Zilla-Plugins-CJM 4.09 (June 4, 2012)
 
 
 use Moose;
@@ -73,6 +73,12 @@ has template_files => (
   default  => sub { [ 'README' ] },
 );
 
+
+has report_versions => (
+  is      => 'ro',
+  isa     => 'Bool',
+  default => 1,
+);
 
 #---------------------------------------------------------------------
 # Main entry point:
@@ -220,7 +226,9 @@ sub munge_file
   my $version = $pm_info->version
       or die "ERROR: Can't find version in $pmFile";
 
-  $self->log("$pmFile: VERSION $version");
+  # level => 'debug' doesn't work here; see RT#77622:
+  my $log_method = ($self->report_versions ? 'log' : 'log_debug');
+  $self->$log_method("$pmFile: VERSION $version");
 
   $dataRef->{version} = "$version";
   $dataRef->{module}  = $pm_info->name;
@@ -385,9 +393,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 4.00 of
-Dist::Zilla::Plugin::TemplateCJM, released April 28, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.08.
+This document describes version 4.09 of
+Dist::Zilla::Plugin::TemplateCJM, released June 4, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.09.
 
 =head1 SYNOPSIS
 
@@ -397,6 +405,7 @@ In your F<dist.ini>:
   changelog = Changes      ; this is the default
   changes   = 1            ; this is the default
   file      = README       ; this is the default
+  report_versions = 1      ; this is the default
 
 =head1 DESCRIPTION
 
@@ -490,7 +499,7 @@ distribution's version, which is available as C<$dist_version>.
 =back
 
 It also peforms a L<BeforeRelease|Dist::Zilla::Role::BeforeRelease>
-check to ensure that the relase date in the changelog is not a single
+check to ensure that the release date in the changelog is not a single
 uppercase word.  (I set the date to NOT until I'm ready to release.)
 
 
@@ -541,6 +550,11 @@ C<file>s, then F<README> is not processed unless explicitly specified.
 This FileFinder provides the list of files that are processed in step
 3.  The default is C<:InstallModules>.  The C<finder> attribute may be
 listed any number of times.
+
+
+=head2 report_versions
+
+If true (the default), report the version of each module processed.
 
 =head1 METHODS
 
