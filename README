@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.09, released June 4, 2012
+Dist-Zilla-Plugins-CJM version 4.10, released August 3, 2012
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -31,7 +31,7 @@ DEPENDENCIES
 
   Package                           Minimum Version
   --------------------------------- ---------------
-  perl                               5.008
+  perl                               5.8.0
   CPAN::Meta::Converter              2.101550
   CPAN::Meta::Requirements           
   Data::Dumper                       
@@ -56,11 +56,12 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.09 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.10 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
 	Dist::Zilla::Plugin::TemplateCJM
-	  - add report_versions parameter
+	  - normalize Perl version in dependency_list
+	  - remove leading "v" from versions in dependency_list
 
 
 
