@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::MakeMaker::Custom;
 # ABSTRACT: Allow a dist to have a custom Makefile.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '4.08';
-# This file is part of Dist-Zilla-Plugins-CJM 4.10 (August 3, 2012)
+our $VERSION = '4.11';
+# This file is part of Dist-Zilla-Plugins-CJM 4.11 (November 3, 2012)
 
 
 use Moose;
@@ -142,9 +142,9 @@ Dist::Zilla::Plugin::MakeMaker::Custom - Allow a dist to have a custom Makefile.
 
 =head1 VERSION
 
-This document describes version 4.08 of
-Dist::Zilla::Plugin::MakeMaker::Custom, released August 3, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.10.
+This document describes version 4.11 of
+Dist::Zilla::Plugin::MakeMaker::Custom, released November 3, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.11.
 
 =head1 SYNOPSIS
 
@@ -159,10 +159,32 @@ In your F<Makefile.PL>:
 
   ##{ $share_dir_code{preamble} || '' ##}
 
-  WriteMakefile(
+  my %args = (
     NAME => "My::Module",
+  ##{ $plugin->get_default(qw(ABSTRACT AUTHOR LICENSE VERSION)) ##}
   ##{ $plugin->get_prereqs ##}
   );
+
+  unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+    my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+    my $pp = $WriteMakefileArgs{PREREQ_PM};
+    for my $mod ( keys %$br ) {
+      if ( exists $pp->{$mod} ) {
+        $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+      }
+      else {
+        $pp->{$mod} = $br->{$mod};
+      }
+    }
+  }
+
+  delete $args{CONFIGURE_REQUIRES}
+    unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+  delete $args{LICENSE}
+    unless eval { ExtUtils::MakeMaker->VERSION(6.31) };
+
+  WriteMakefile(%args);
 
   ##{ $share_dir_code{postamble} || '' ##}
 
@@ -245,6 +267,32 @@ The distribution's version number.
 The Dist::Zilla object that is creating the distribution.
 
 =back
+
+=head2 Using MakeMaker::Custom with AutoPrereqs
+
+If you are using the L<AutoPrereqs|Dist::Zilla::Plugin::AutoPrereqs>
+plugin, then you will probably want to set its C<configure_finder> to
+a FileFinder that includes F<Makefile.PL>.  You may also want to set
+this plugin's C<eumm_version> parameter to 0 and allow AutoPrereqs to
+get the version from your S<C<use ExtUtils::MakeMaker>> line.
+
+Example F<dist.ini> configuration:
+
+  [MakeMaker::Custom]
+  eumm_version = 0 ; AutoPrereqs gets actual version from Makefile.PL
+
+  [FileFinder::ByName / :MakefilePL]
+  file = Makefile.PL
+
+  [AutoPrereqs]
+  :version = 4.300005 ; need configure_finder
+  configure_finder = :MakefilePL
+  ; Add next line if your Makefile.PL uses modules you ship in inc/
+  configure_finder = :IncModules
+
+Then in your F<Makefile.PL> you'd say:
+
+  use ExtUtils::MakeMaker 6.32; # or whatever version you need
 
 =head1 METHODS
 

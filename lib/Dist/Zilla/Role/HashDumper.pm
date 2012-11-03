@@ -18,7 +18,7 @@ package Dist::Zilla::Role::HashDumper;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.03';
-# This file is part of Dist-Zilla-Plugins-CJM 4.10 (August 3, 2012)
+# This file is part of Dist-Zilla-Plugins-CJM 4.11 (November 3, 2012)
 
 use Moose::Role;
 
@@ -85,8 +85,8 @@ Dist::Zilla::Role::HashDumper - Dump selected hash keys as a string
 =head1 VERSION
 
 This document describes version 4.03 of
-Dist::Zilla::Role::HashDumper, released August 3, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.10.
+Dist::Zilla::Role::HashDumper, released November 3, 2012
+as part of Dist-Zilla-Plugins-CJM version 4.11.
 
 =head1 DESCRIPTION
 

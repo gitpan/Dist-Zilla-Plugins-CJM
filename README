@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.10, released August 3, 2012
+Dist-Zilla-Plugins-CJM version 4.11, released November 3, 2012
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -56,12 +56,17 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.10 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.11 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::TemplateCJM
-	  - normalize Perl version in dependency_list
-	  - remove leading "v" from versions in dependency_list
+	- no functional changes in this release, just improved docs
+
+	Dist::Zilla::Plugin::MakeMaker::Custom
+	  - expand SYNOPSIS to show more complete example
+	  - add documentation about combining with AutoPrereqs
+
+	Dist::Zilla::Plugin::ModuleBuild::Custom
+	  - add documentation about combining with AutoPrereqs
 
 
 
