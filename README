@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.11, released November 3, 2012
+Dist-Zilla-Plugins-CJM version 4.12, released January 12, 2013
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -56,23 +56,18 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.11 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.12 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- no functional changes in this release, just improved docs
-
-	Dist::Zilla::Plugin::MakeMaker::Custom
-	  - expand SYNOPSIS to show more complete example
-	  - add documentation about combining with AutoPrereqs
-
-	Dist::Zilla::Plugin::ModuleBuild::Custom
-	  - add documentation about combining with AutoPrereqs
+	Dist::Zilla::Plugin::TemplateCJM
+	  - handle pure-POD files without package declaration or $VERSION
+	    (Must be named *.pod and found in lib/ directory.)
 
 
 
 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Christopher J. Madsen.
+This software is copyright (c) 2013 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

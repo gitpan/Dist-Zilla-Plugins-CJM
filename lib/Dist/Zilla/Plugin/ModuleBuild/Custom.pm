@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.11';
-# This file is part of Dist-Zilla-Plugins-CJM 4.11 (November 3, 2012)
+# This file is part of Dist-Zilla-Plugins-CJM 4.12 (January 12, 2013)
 
 
 use Moose;
@@ -156,8 +156,8 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 =head1 VERSION
 
 This document describes version 4.11 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released November 3, 2012
-as part of Dist-Zilla-Plugins-CJM version 4.11.
+Dist::Zilla::Plugin::ModuleBuild::Custom, released January 12, 2013
+as part of Dist-Zilla-Plugins-CJM version 4.12.
 
 =head1 SYNOPSIS
 
@@ -348,7 +348,7 @@ L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Christopher J. Madsen.
+This software is copyright (c) 2013 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
