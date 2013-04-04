@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::MakeMaker::Custom;
 # ABSTRACT: Allow a dist to have a custom Makefile.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '4.11';
-# This file is part of Dist-Zilla-Plugins-CJM 4.12 (January 12, 2013)
+our $VERSION = '4.13';
+# This file is part of Dist-Zilla-Plugins-CJM 4.13 (April 4, 2013)
 
 
 use Moose;
@@ -59,7 +59,45 @@ sub prune_files
 
 sub get_prereqs
 {
-  shift->get_default(qw(BUILD_REQUIRES CONFIGURE_REQUIRES PREREQ_PM));
+  my ($self, $api_version) = @_;
+
+  if ($api_version) {
+    $self->log_fatal("api_version $api_version is not supported")
+        unless $api_version == 1;
+    local $@;
+    $self->log(["WARNING: Dist::Zilla %s does not support api_version %d",
+                Dist::Zilla->VERSION, $api_version ])
+        unless eval { Dist::Zilla::Plugin::MakeMaker->VERSION( 4.300032 ) };
+  }
+
+  # Get the prerequisites as a hashref:
+  my $prereqs = $self->extract_keys_as_hash(
+    WriteMakefile => $self->_mmc_write_makefile_args,
+    qw(BUILD_REQUIRES CONFIGURE_REQUIRES PREREQ_PM TEST_REQUIRES)
+  );
+
+  # If we have TEST_REQUIRES, but the template doesn't understand them,
+  # merge them into BUILD_REQUIRES (if any)
+  if ($prereqs->{TEST_REQUIRES} and not $api_version) {
+    if ($prereqs->{BUILD_REQUIRES}) {
+      # have both BUILD_REQUIRES & TEST_REQUIRES, so merge them:
+      require CPAN::Meta::Requirements;
+      CPAN::Meta::Requirements->VERSION(2.121);
+      my ($buildreq, $testreq) = map {
+        CPAN::Meta::Requirements->from_string_hash( $prereqs->{$_} )
+      } qw(BUILD_REQUIRES TEST_REQUIRES);
+
+      $buildreq->add_requirements( $testreq );
+
+      delete $prereqs->{TEST_REQUIRES};
+      $prereqs->{BUILD_REQUIRES} = $buildreq->as_string_hash;
+    } else {
+      # no BUILD_REQUIRES, so we can just rename TEST_REQUIRES:
+      $prereqs->{BUILD_REQUIRES} = delete $prereqs->{TEST_REQUIRES};
+    }
+  } # end if TEST_REQUIRES and $api_version is 0
+
+  $self->hash_as_string( $prereqs );
 } # end get_prereqs
 
 #---------------------------------------------------------------------
@@ -142,9 +180,9 @@ Dist::Zilla::Plugin::MakeMaker::Custom - Allow a dist to have a custom Makefile.
 
 =head1 VERSION
 
-This document describes version 4.11 of
-Dist::Zilla::Plugin::MakeMaker::Custom, released January 12, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.12.
+This document describes version 4.13 of
+Dist::Zilla::Plugin::MakeMaker::Custom, released April 4, 2013
+as part of Dist-Zilla-Plugins-CJM version 4.13.
 
 =head1 SYNOPSIS
 
@@ -162,12 +200,25 @@ In your F<Makefile.PL>:
   my %args = (
     NAME => "My::Module",
   ##{ $plugin->get_default(qw(ABSTRACT AUTHOR LICENSE VERSION)) ##}
-  ##{ $plugin->get_prereqs ##}
+  ##{ $plugin->get_prereqs(1) ##}
   );
 
+  unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+    my $tr = delete $args{TEST_REQUIRES};
+    my $br = $args{BUILD_REQUIRES};
+    for my $mod ( keys %$tr ) {
+      if ( exists $br->{$mod} ) {
+        $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+      }
+      else {
+        $br->{$mod} = $tr->{$mod};
+      }
+    }
+  }
+
   unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
-    my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-    my $pp = $WriteMakefileArgs{PREREQ_PM};
+    my $br = delete $args{BUILD_REQUIRES};
+    my $pp = $args{PREREQ_PM};
     for my $mod ( keys %$br ) {
       if ( exists $pp->{$mod} ) {
         $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
@@ -312,14 +363,30 @@ string is returned.  Otherwise, the result always ends with a comma.
 
 =head2 get_prereqs
 
-  $plugin->get_prereqs
+  $plugin->get_prereqs($api_version);
 
-This is equivalent to
+This is mostly equivalent to
 
-  $plugin->get_default(qw(BUILD_REQUIRES CONFIGURE_REQUIRES PREREQ_PM))
+  $plugin->get_default(qw(BUILD_REQUIRES CONFIGURE_REQUIRES PREREQ_PM
+                          TEST_REQUIRES))
 
 In other words, it returns all the keys that describe the
-distribution's prerequisites.
+distribution's prerequisites.  The C<$api_version> indicates what keys
+the template can handle.  The currently defined values are:
+
+=over 8
+
+=item C<0> (or undef)
+- Fold TEST_REQUIRES into BUILD_REQUIRES.  This provides backwards
+compatibility with older versions of this plugin and Dist::Zilla.
+
+=item C<1>
+- Return TEST_REQUIRES (introduced in ExtUtils::MakeMaker 6.63_03) as a
+separate key (assuming it's not empty).  Your F<Makefile.PL> should
+either require ExtUtils::MakeMaker 6.63_03, or fold TEST_REQUIRES into
+BUILD_REQUIRES if an older version is used (as shown in the SYNOPSIS).
+
+=back
 
 =head1 SEE ALSO
 

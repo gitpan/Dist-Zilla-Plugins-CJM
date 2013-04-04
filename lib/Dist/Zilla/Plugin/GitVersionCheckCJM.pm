@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '4.03';
-# This file is part of Dist-Zilla-Plugins-CJM 4.12 (January 12, 2013)
+our $VERSION = '4.13';
+# This file is part of Dist-Zilla-Plugins-CJM 4.13 (April 4, 2013)
 
 
 use version 0.77 ();
@@ -57,7 +57,7 @@ sub munge_files {
   my ($self) = @_;
 
   # Get the released versions:
-  my $git = Git::Wrapper->new( $self->zilla->root );
+  my $git = Git::Wrapper->new( $self->zilla->root->stringify );
 
   my %released = map { /^v?([\d._]+)$/ ? ($1, 1) : () } $git->tag;
 
@@ -160,9 +160,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 4.03 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released January 12, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.12.
+This document describes version 4.13 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released April 4, 2013
+as part of Dist-Zilla-Plugins-CJM version 4.13.
 
 =head1 SYNOPSIS
 

@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.12, released January 12, 2013
+Dist-Zilla-Plugins-CJM version 4.13, released April 4, 2013
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -33,7 +33,7 @@ DEPENDENCIES
   --------------------------------- ---------------
   perl                               5.8.0
   CPAN::Meta::Converter              2.101550
-  CPAN::Meta::Requirements           
+  CPAN::Meta::Requirements           2.121
   Data::Dumper                       
   Dist::Zilla                        4.300009
   Dist::Zilla::Plugin::InlineFiles   
@@ -56,12 +56,19 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.12 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.13 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::TemplateCJM
-	  - handle pure-POD files without package declaration or $VERSION
-	    (Must be named *.pod and found in lib/ directory.)
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	  - fix compatibility with Git::Wrapper 0.028_96
+	    (Don't pass Path::Class objects to Git::Wrapper)
+
+	Dist::Zilla::Plugin::MakeMaker::Custom
+	  - fix compatibility with Dist::Zilla 4.300032
+	  - add $api_version parameter to get_prereqs method
+
+	Dist::Zilla::Role::HashDumper
+	  - add extract_keys_as_hash method
 
 
 

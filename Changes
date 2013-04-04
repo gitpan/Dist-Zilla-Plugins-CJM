@@ -3,6 +3,18 @@ Revision history for Dist-Zilla-Plugins-CJM
 Note: the version number of a plugin is the version of the dist in
 which it was last changed.
 
+4.13   April 4, 2013
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	  - fix compatibility with Git::Wrapper 0.028_96
+	    (Don't pass Path::Class objects to Git::Wrapper)
+
+	Dist::Zilla::Plugin::MakeMaker::Custom
+	  - fix compatibility with Dist::Zilla 4.300032
+	  - add $api_version parameter to get_prereqs method
+
+	Dist::Zilla::Role::HashDumper
+	  - add extract_keys_as_hash method
+
 4.12   January 12, 2013
 	Dist::Zilla::Plugin::TemplateCJM
 	  - handle pure-POD files without package declaration or $VERSION

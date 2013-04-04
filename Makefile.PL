@@ -11,13 +11,7 @@ use ExtUtils::MakeMaker 6.30;
 my %WriteMakefileArgs = (
   "ABSTRACT" => "CJM's plugins for Dist::Zilla",
   "AUTHOR" => "Christopher J. Madsen <perl\@cjmweb.net>",
-  "BUILD_REQUIRES" => {
-    "File::pushd" => 0,
-    "Parse::CPAN::Meta" => 0,
-    "Test::DZil" => 0,
-    "Test::More" => "0.88",
-    "Try::Tiny" => 0
-  },
+  "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -27,7 +21,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Plugins::CJM",
   "PREREQ_PM" => {
     "CPAN::Meta::Converter" => "2.101550",
-    "CPAN::Meta::Requirements" => 0,
+    "CPAN::Meta::Requirements" => "2.121",
     "Data::Dumper" => 0,
     "Dist::Zilla" => "4.300009",
     "Dist::Zilla::Plugin::InlineFiles" => 0,
@@ -47,12 +41,32 @@ my %WriteMakefileArgs = (
     "namespace::autoclean" => 0,
     "version" => "0.77"
   },
-  "VERSION" => "4.12",
+  "TEST_REQUIRES" => {
+    "File::pushd" => 0,
+    "Parse::CPAN::Meta" => 0,
+    "Test::DZil" => 0,
+    "Test::More" => "0.88",
+    "Try::Tiny" => 0
+  },
+  "VERSION" => "4.13",
   "test" => {
     "TESTS" => "t/*.t"
   }
 );
 
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
+  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
