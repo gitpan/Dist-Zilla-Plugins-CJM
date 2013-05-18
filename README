@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.13, released April 4, 2013
+Dist-Zilla-Plugins-CJM version 4.14, released May 18, 2013
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -56,19 +56,11 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.13 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.14 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Plugin::GitVersionCheckCJM
-	  - fix compatibility with Git::Wrapper 0.028_96
-	    (Don't pass Path::Class objects to Git::Wrapper)
-
-	Dist::Zilla::Plugin::MakeMaker::Custom
-	  - fix compatibility with Dist::Zilla 4.300032
-	  - add $api_version parameter to get_prereqs method
-
-	Dist::Zilla::Role::HashDumper
-	  - add extract_keys_as_hash method
+	- no functional changes in this release, just improved tests
+	- make mb_custom.t & mm_custom.t more flexible about version '0'
 
 
 

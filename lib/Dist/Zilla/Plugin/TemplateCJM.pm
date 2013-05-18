@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::TemplateCJM;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.12';
-# This file is part of Dist-Zilla-Plugins-CJM 4.13 (April 4, 2013)
+# This file is part of Dist-Zilla-Plugins-CJM 4.14 (May 18, 2013)
 
 
 use Moose;
@@ -409,8 +409,8 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 =head1 VERSION
 
 This document describes version 4.12 of
-Dist::Zilla::Plugin::TemplateCJM, released April 4, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.13.
+Dist::Zilla::Plugin::TemplateCJM, released May 18, 2013
+as part of Dist-Zilla-Plugins-CJM version 4.14.
 
 =head1 SYNOPSIS
 
