@@ -80,7 +80,7 @@
          "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.14",
+   "version" : "4.15",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.014002"

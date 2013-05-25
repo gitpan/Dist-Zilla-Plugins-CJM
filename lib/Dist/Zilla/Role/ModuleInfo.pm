@@ -18,7 +18,7 @@ package Dist::Zilla::Role::ModuleInfo;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.00';
-# This file is part of Dist-Zilla-Plugins-CJM 4.14 (May 18, 2013)
+# This file is part of Dist-Zilla-Plugins-CJM 4.15 (May 25, 2013)
 
 use Moose::Role;
 
@@ -67,8 +67,8 @@ Dist::Zilla::Role::ModuleInfo - Create Module::Metadata object from Dist::Zilla:
 =head1 VERSION
 
 This document describes version 4.00 of
-Dist::Zilla::Role::ModuleInfo, released May 18, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.14.
+Dist::Zilla::Role::ModuleInfo, released May 25, 2013
+as part of Dist-Zilla-Plugins-CJM version 4.15.
 
 =head1 DESCRIPTION
 

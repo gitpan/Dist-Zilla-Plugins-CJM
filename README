@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.14, released May 18, 2013
+Dist-Zilla-Plugins-CJM version 4.15, released May 25, 2013
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -56,11 +56,14 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.14 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.15 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- no functional changes in this release, just improved tests
-	- make mb_custom.t & mm_custom.t more flexible about version '0'
+	Dist::Zilla::Plugin::MakeMaker::Custom
+	  - clarify that get_prereqs(1) requires Dist::Zilla 4.300032
+
+	Dist::Zilla::Plugin::ModuleBuild::Custom
+	  - add $api_version parameter to get_prereqs method
 
 
 

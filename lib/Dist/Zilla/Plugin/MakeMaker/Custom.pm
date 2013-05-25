@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::MakeMaker::Custom;
 # ABSTRACT: Allow a dist to have a custom Makefile.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '4.13';
-# This file is part of Dist-Zilla-Plugins-CJM 4.14 (May 18, 2013)
+our $VERSION = '4.15';
+# This file is part of Dist-Zilla-Plugins-CJM 4.15 (May 25, 2013)
 
 
 use Moose;
@@ -180,9 +180,9 @@ Dist::Zilla::Plugin::MakeMaker::Custom - Allow a dist to have a custom Makefile.
 
 =head1 VERSION
 
-This document describes version 4.13 of
-Dist::Zilla::Plugin::MakeMaker::Custom, released May 18, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.14.
+This document describes version 4.15 of
+Dist::Zilla::Plugin::MakeMaker::Custom, released May 25, 2013
+as part of Dist-Zilla-Plugins-CJM version 4.15.
 
 =head1 SYNOPSIS
 
@@ -381,10 +381,11 @@ the template can handle.  The currently defined values are:
 compatibility with older versions of this plugin and Dist::Zilla.
 
 =item C<1>
-- Return TEST_REQUIRES (introduced in ExtUtils::MakeMaker 6.63_03) as a
-separate key (assuming it's not empty).  Your F<Makefile.PL> should
-either require ExtUtils::MakeMaker 6.63_03, or fold TEST_REQUIRES into
-BUILD_REQUIRES if an older version is used (as shown in the SYNOPSIS).
+- Return TEST_REQUIRES (introduced in ExtUtils::MakeMaker 6.63_03) as
+a separate key (assuming it's not empty), which requires Dist::Zilla
+4.300032 or later.  Your F<Makefile.PL> should either require
+ExtUtils::MakeMaker 6.63_03, or fold TEST_REQUIRES into BUILD_REQUIRES
+if an older version is used (as shown in the SYNOPSIS).
 
 =back
 
