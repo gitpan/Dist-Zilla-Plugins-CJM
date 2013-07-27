@@ -80,7 +80,7 @@
          "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.16",
+   "version" : "4.17",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.014002"
@@ -162,7 +162,7 @@
          {
             "class" : "Dist::Zilla::Plugin::MatchManifest",
             "name" : "CJM/MatchManifest",
-            "version" : "4.00"
+            "version" : "4.01"
          },
          {
             "class" : "Dist::Zilla::Plugin::RecommendedPrereqs",
