@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.17, released July 26, 2013
+Dist-Zilla-Plugins-CJM version 4.20, released August 24, 2013
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -41,12 +41,10 @@ DEPENDENCIES
   File::Copy                         
   File::HomeDir                      0.81
   File::Temp                         0.19
-  List::Util                         
   Module::Metadata                   
   Moose                              
   Moose::Autobox                     
   Moose::Role                        
-  Moose::Util::TypeConstraints       
   Path::Class                        
   Scalar::Util                       
   autodie                            
@@ -56,11 +54,14 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.17 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.20 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	Dist::Zilla::Role::ModuleInfo
-	  - die if Module::Metadata constructor fails (RT#87277)
+	[TemplateCJM]
+	  - now distributed separately (no longer part of this dist)
+
+	[Test::PrereqsFromMeta]
+	  - Handle an empty hash in prerequisites
 
 
 

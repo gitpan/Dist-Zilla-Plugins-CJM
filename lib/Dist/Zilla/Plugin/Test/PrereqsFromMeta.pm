@@ -18,8 +18,8 @@ package Dist::Zilla::Plugin::Test::PrereqsFromMeta;
 #---------------------------------------------------------------------
 
 use 5.008;
-our $VERSION = '4.04';
-# This file is part of Dist-Zilla-Plugins-CJM 4.17 (July 26, 2013)
+our $VERSION = '4.20';
+# This file is part of Dist-Zilla-Plugins-CJM 4.20 (August 24, 2013)
 
 
 use Moose;
@@ -54,9 +54,9 @@ Dist::Zilla::Plugin::Test::PrereqsFromMeta - Check the prereqs from our META.jso
 
 =head1 VERSION
 
-This document describes version 4.04 of
-Dist::Zilla::Plugin::Test::PrereqsFromMeta, released July 26, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.17.
+This document describes version 4.20 of
+Dist::Zilla::Plugin::Test::PrereqsFromMeta, released August 24, 2013
+as part of Dist-Zilla-Plugins-CJM version 4.20.
 
 =head1 SYNOPSIS
 
@@ -183,6 +183,7 @@ TEST: {
 
     while (<META>) {
       last if /^\s*\},?\s*\z/;
+      next if /^\s*"[^"]+"\s*:\s*\{\s*\},?\s*\z/;
       ok(/^\s*"(.+)" : \{\s*\z/, "found relationship $phase $1") or last TEST;
       my $rel = $1;
 

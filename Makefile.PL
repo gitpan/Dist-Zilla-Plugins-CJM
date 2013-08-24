@@ -29,12 +29,10 @@ my %WriteMakefileArgs = (
     "File::Copy" => 0,
     "File::HomeDir" => "0.81",
     "File::Temp" => "0.19",
-    "List::Util" => 0,
     "Module::Metadata" => 0,
     "Moose" => 0,
     "Moose::Autobox" => 0,
     "Moose::Role" => 0,
-    "Moose::Util::TypeConstraints" => 0,
     "Path::Class" => 0,
     "Scalar::Util" => 0,
     "autodie" => 0,
@@ -48,7 +46,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.88",
     "Try::Tiny" => 0
   },
-  "VERSION" => "4.17",
+  "VERSION" => "4.20",
   "test" => {
     "TESTS" => "t/*.t"
   }

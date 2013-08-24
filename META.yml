@@ -32,12 +32,10 @@ requires:
   File::Copy: 0
   File::HomeDir: 0.81
   File::Temp: 0.19
-  List::Util: 0
   Module::Metadata: 0
   Moose: 0
   Moose::Autobox: 0
   Moose::Role: 0
-  Moose::Util::TypeConstraints: 0
   Path::Class: 0
   Scalar::Util: 0
   autodie: 0
@@ -46,7 +44,7 @@ requires:
   version: 0.77
 resources:
   repository: git://github.com/madsen/dist-zilla-plugins-cjm.git
-version: 4.17
+version: 4.20
 x_Dist_Zilla:
   perl:
     version: 5.014002
@@ -82,7 +80,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Test::PrereqsFromMeta
       name: CJM/Test::PrereqsFromMeta
-      version: 4.04
+      version: 4.20
     -
       class: Dist::Zilla::Plugin::PodSyntaxTests
       name: CJM/PodSyntaxTests
@@ -128,7 +126,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::TemplateCJM
       name: CJM/TemplateCJM
-      version: 4.12
+      version: 4.20
     -
       class: Dist::Zilla::Plugin::Repository
       name: CJM/Repository
