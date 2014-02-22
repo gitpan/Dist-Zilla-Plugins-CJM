@@ -18,8 +18,8 @@ package Dist::Zilla::Plugin::Test::PrereqsFromMeta;
 #---------------------------------------------------------------------
 
 use 5.008;
-our $VERSION = '4.20';
-# This file is part of Dist-Zilla-Plugins-CJM 4.20 (August 24, 2013)
+our $VERSION = '4.21';
+# This file is part of Dist-Zilla-Plugins-CJM 4.21 (February 22, 2014)
 
 
 use Moose;
@@ -54,9 +54,9 @@ Dist::Zilla::Plugin::Test::PrereqsFromMeta - Check the prereqs from our META.jso
 
 =head1 VERSION
 
-This document describes version 4.20 of
-Dist::Zilla::Plugin::Test::PrereqsFromMeta, released August 24, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.20.
+This document describes version 4.21 of
+Dist::Zilla::Plugin::Test::PrereqsFromMeta, released February 22, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.21.
 
 =head1 SYNOPSIS
 
@@ -97,11 +97,11 @@ or through the web interface at
 L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM >>.
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
-L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
+L<< https://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Christopher J. Madsen.
+This software is copyright (c) 2014 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
@@ -195,7 +195,10 @@ TEST: {
 
         next if $phase ne 'runtime' or $prereq eq 'perl';
 
-        my $loaded = eval "require $prereq; $prereq->VERSION($version); 1";
+        # Need a special case for if.pm, because "require if;" is a syntax error.
+        my $loaded = ($prereq eq 'if')
+            ? eval "require '$prereq.pm'; '$prereq'->VERSION($version); 1"
+            : eval "require $prereq; $prereq->VERSION($version); 1";
         if ($rel eq 'requires') {
           ok($loaded, "loaded $prereq $version")
               or printf STDERR "\n#    Got: %s %s\n# Wanted: %s %s\n",

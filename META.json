@@ -4,7 +4,7 @@
       "Christopher J. Madsen <perl@cjmweb.net>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 5.009, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -75,69 +75,64 @@
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/madsen/dist-zilla-plugins-cjm.git",
-         "web" : "http://github.com/madsen/dist-zilla-plugins-cjm"
+         "web" : "https://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.20",
+   "version" : "4.21",
    "x_Dist_Zilla" : {
       "perl" : {
-         "version" : "5.014002"
+         "version" : "5.018001"
       },
       "plugins" : [
          {
             "class" : "Dist::Zilla::Plugin::FileFinder::Filter",
             "name" : ":CheckRecommend",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::GatherDir",
             "name" : "CJM/GatherDir",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::PruneCruft",
             "name" : "CJM/PruneCruft",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::ManifestSkip",
             "name" : "CJM/ManifestSkip",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaJSON",
             "name" : "CJM/MetaJSON",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaYAML",
             "name" : "CJM/MetaYAML",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::License",
             "name" : "CJM/License",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::Test::PrereqsFromMeta",
             "name" : "CJM/Test::PrereqsFromMeta",
-            "version" : "4.20"
+            "version" : "4.21"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodSyntaxTests",
             "name" : "CJM/PodSyntaxTests",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodCoverageTests",
             "name" : "CJM/PodCoverageTests",
-            "version" : "4.300034"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::ExtraTests",
-            "name" : "CJM/ExtraTests",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodLoom",
@@ -145,17 +140,22 @@
                "Pod::Loom version" : "0.06"
             },
             "name" : "CJM/PodLoom",
-            "version" : "4.10"
+            "version" : "5.00"
          },
          {
             "class" : "Dist::Zilla::Plugin::MakeMaker",
             "name" : "CJM/MakeMaker",
-            "version" : "4.300034"
+            "version" : "5.009"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::RunExtraTests",
+            "name" : "CJM/RunExtraTests",
+            "version" : "0.011"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaConfig",
             "name" : "CJM/MetaConfig",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::MatchManifest",
@@ -165,12 +165,12 @@
          {
             "class" : "Dist::Zilla::Plugin::RecommendedPrereqs",
             "name" : "CJM/RecommendedPrereqs",
-            "version" : "4.06"
+            "version" : "4.21"
          },
          {
             "class" : "Dist::Zilla::Plugin::CheckPrereqsIndexed",
             "name" : "CJM/CheckPrereqsIndexed",
-            "version" : "0.006"
+            "version" : "0.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::GitVersionCheckCJM",
@@ -180,42 +180,42 @@
          {
             "class" : "Dist::Zilla::Plugin::TemplateCJM",
             "name" : "CJM/TemplateCJM",
-            "version" : "4.20"
+            "version" : "4.21"
          },
          {
             "class" : "Dist::Zilla::Plugin::Repository",
             "name" : "CJM/Repository",
-            "version" : "0.18"
+            "version" : "0.19"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Check",
             "name" : "CJM/@Git/Check",
-            "version" : "2.013"
+            "version" : "2.017"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Commit",
             "name" : "CJM/@Git/Commit",
-            "version" : "2.013"
+            "version" : "2.017"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Tag",
             "name" : "CJM/@Git/Tag",
-            "version" : "2.013"
+            "version" : "2.017"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Push",
             "name" : "CJM/@Git/Push",
-            "version" : "2.013"
+            "version" : "2.017"
          },
          {
             "class" : "Dist::Zilla::Plugin::TestRelease",
             "name" : "CJM/TestRelease",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::UploadToCPAN",
             "name" : "CJM/UploadToCPAN",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::ArchiveRelease",
@@ -230,12 +230,12 @@
          {
             "class" : "Dist::Zilla::Plugin::MetaNoIndex",
             "name" : "MetaNoIndex",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::AutoPrereqs",
             "name" : "AutoPrereqs",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",
@@ -246,37 +246,47 @@
                }
             },
             "name" : "Prereqs",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":InstallModules",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":IncModules",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":TestFiles",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":ExecFiles",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":ShareFiles",
-            "version" : "4.300034"
+            "version" : "5.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":MainModule",
-            "version" : "4.300034"
+            "version" : "5.009"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":AllFiles",
+            "version" : "5.009"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":NoFiles",
+            "version" : "5.009"
          }
       ],
       "zilla" : {
@@ -284,7 +294,7 @@
          "config" : {
             "is_trial" : "0"
          },
-         "version" : "4.300034"
+         "version" : "5.009"
       }
    }
 }

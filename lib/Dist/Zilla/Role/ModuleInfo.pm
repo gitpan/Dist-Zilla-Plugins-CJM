@@ -18,7 +18,7 @@ package Dist::Zilla::Role::ModuleInfo;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.17';
-# This file is part of Dist-Zilla-Plugins-CJM 4.20 (August 24, 2013)
+# This file is part of Dist-Zilla-Plugins-CJM 4.21 (February 22, 2014)
 
 use Moose::Role;
 
@@ -67,8 +67,8 @@ Dist::Zilla::Role::ModuleInfo - Create Module::Metadata object from Dist::Zilla:
 =head1 VERSION
 
 This document describes version 4.17 of
-Dist::Zilla::Role::ModuleInfo, released August 24, 2013
-as part of Dist-Zilla-Plugins-CJM version 4.20.
+Dist::Zilla::Role::ModuleInfo, released February 22, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.21.
 
 =head1 DESCRIPTION
 
@@ -113,11 +113,11 @@ or through the web interface at
 L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-Plugins-CJM >>.
 
 You can follow or contribute to Dist-Zilla-Plugins-CJM's development at
-L<< http://github.com/madsen/dist-zilla-plugins-cjm >>.
+L<< https://github.com/madsen/dist-zilla-plugins-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Christopher J. Madsen.
+This software is copyright (c) 2014 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
