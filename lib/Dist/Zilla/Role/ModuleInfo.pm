@@ -17,8 +17,8 @@ package Dist::Zilla::Role::ModuleInfo;
 # ABSTRACT: Create Module::Metadata object from Dist::Zilla::File
 #---------------------------------------------------------------------
 
-our $VERSION = '4.17';
-# This file is part of Dist-Zilla-Plugins-CJM 4.21 (February 22, 2014)
+our $VERSION = '4.22';
+# This file is part of Dist-Zilla-Plugins-CJM 4.22 (April 5, 2014)
 
 use Moose::Role;
 
@@ -47,8 +47,8 @@ sub get_module_info
   # Module::Metadata only cares about the basename of the file:
   my $tempname = $dir->file($modPath->basename);
 
-  open(my $temp, '>', $tempname);
-  print $temp $file->content;
+  open(my $temp, '>:raw', $tempname);
+  print $temp Dist::Zilla->VERSION < 5 ? $file->content : $file->encoded_content;
   close $temp;
 
   return(Module::Metadata->new_from_file("$tempname", @_)
@@ -66,9 +66,9 @@ Dist::Zilla::Role::ModuleInfo - Create Module::Metadata object from Dist::Zilla:
 
 =head1 VERSION
 
-This document describes version 4.17 of
-Dist::Zilla::Role::ModuleInfo, released February 22, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.21.
+This document describes version 4.22 of
+Dist::Zilla::Role::ModuleInfo, released April 5, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.22.
 
 =head1 DESCRIPTION
 

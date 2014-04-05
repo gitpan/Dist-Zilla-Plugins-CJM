@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.21, released February 22, 2014
+Dist-Zilla-Plugins-CJM version 4.22, released April 5, 2014
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -54,14 +54,11 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.21 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.22 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	[RecommendedPrereqs]
-	  - Debug log each file scanned (turn on with dzil -v)
-
-	[Test::PrereqsFromMeta]
-	  - Special case for if.pm (modules named after keywords are tricky)
+	[=Dist::Zilla::Role::ModuleInfo]
+	  - Use encoded_content with Dist::Zilla 5 (RT#94145)
 
 
 

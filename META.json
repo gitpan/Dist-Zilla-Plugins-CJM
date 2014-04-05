@@ -78,7 +78,7 @@
          "web" : "https://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.21",
+   "version" : "4.22",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018001"
@@ -137,7 +137,7 @@
          {
             "class" : "Dist::Zilla::Plugin::PodLoom",
             "config" : {
-               "Pod::Loom version" : "0.06"
+               "Pod::Loom version" : "0.08"
             },
             "name" : "CJM/PodLoom",
             "version" : "5.00"

@@ -44,7 +44,7 @@ requires:
   version: 0.77
 resources:
   repository: git://github.com/madsen/dist-zilla-plugins-cjm.git
-version: 4.21
+version: 4.22
 x_Dist_Zilla:
   perl:
     version: 5.018001
@@ -92,7 +92,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::PodLoom
       config:
-        Pod::Loom version: 0.06
+        Pod::Loom version: 0.08
       name: CJM/PodLoom
       version: 5.00
     -
