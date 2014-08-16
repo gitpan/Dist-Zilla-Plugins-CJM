@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.22, released April 5, 2014
+Dist-Zilla-Plugins-CJM version 4.23, released August 16, 2014
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -54,11 +54,13 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.22 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.23 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	[=Dist::Zilla::Role::ModuleInfo]
-	  - Use encoded_content with Dist::Zilla 5 (RT#94145)
+	[Test::PrereqsFromMeta]
+	  - Make insufficient version just a warning instead of a failure
+	  - Allow undefined version to fulfill prerequisite version 0
+	  - Dump all of %INC if run with -v or --verbose option
 
 
 

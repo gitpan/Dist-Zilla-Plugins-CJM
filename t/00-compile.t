@@ -1,6 +1,6 @@
 use Test::More tests => 10;
 
-diag("Testing Dist-Zilla-Plugins-CJM 4.22");
+diag("Testing Dist-Zilla-Plugins-CJM 4.23");
 
 use_ok('Dist::Zilla::Plugin::ArchiveRelease');
 use_ok('Dist::Zilla::Plugin::MakeMaker::Custom');

@@ -18,8 +18,8 @@ package Dist::Zilla::Plugin::Test::PrereqsFromMeta;
 #---------------------------------------------------------------------
 
 use 5.008;
-our $VERSION = '4.21';
-# This file is part of Dist-Zilla-Plugins-CJM 4.22 (April 5, 2014)
+our $VERSION = '4.23';
+# This file is part of Dist-Zilla-Plugins-CJM 4.23 (August 16, 2014)
 
 
 use Moose;
@@ -54,9 +54,9 @@ Dist::Zilla::Plugin::Test::PrereqsFromMeta - Check the prereqs from our META.jso
 
 =head1 VERSION
 
-This document describes version 4.21 of
-Dist::Zilla::Plugin::Test::PrereqsFromMeta, released April 5, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.22.
+This document describes version 4.23 of
+Dist::Zilla::Plugin::Test::PrereqsFromMeta, released August 16, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.23.
 
 =head1 SYNOPSIS
 
@@ -69,11 +69,16 @@ In your F<dist.ini>:
 This plugin will inject F<t/00-all_prereqs.t> into your dist.  This
 test reads your F<META.json> file and attempts to load all runtime
 prerequisites.  It fails if any required runtime prerequisites fail to
-load.
+load.  (If the loaded version is less than the required version, it
+prints a warning message but the test does not fail.)
 
 In addition, if C<AUTOMATED_TESTING> is set, it dumps out every module
 in C<%INC> along with its version.  This can help you determine the
 cause of failures reported by CPAN Testers.
+
+You can also get the version dump by running F<t/00-all_prereqs.t> with
+the C<-v> or C<--verbose> option.  (This is not the same as passing
+the C<-v> option to C<prove>.)
 
 
 =for Pod::Coverage
@@ -142,6 +147,7 @@ use warnings;
 # with modules that aren't prerequisites.
 
 my $test = 0;
+my $tests_completed;
 
 sub ok ($$)
 {
@@ -153,8 +159,8 @@ sub ok ($$)
 } # end ok
 
 END {
-  ok(0, 'unknown failure') unless $test;
-  print "1..$test\n";
+  ok(0, 'unknown failure') unless defined $tests_completed;
+  print "1..$tests_completed\n";
 }
 
 sub get_version
@@ -197,14 +203,18 @@ TEST: {
 
         # Need a special case for if.pm, because "require if;" is a syntax error.
         my $loaded = ($prereq eq 'if')
-            ? eval "require '$prereq.pm'; '$prereq'->VERSION($version); 1"
-            : eval "require $prereq; $prereq->VERSION($version); 1";
+            ? eval "require '$prereq.pm'; 1"
+            : eval "require $prereq; 1";
         if ($rel eq 'requires') {
-          ok($loaded, "loaded $prereq $version")
-              or printf STDERR "\n#    Got: %s %s\n# Wanted: %s %s\n",
-                  $prereq, get_version($prereq), $prereq, $version;
+          ok($loaded, "loaded $prereq") or
+              print STDERR "\n# ERROR: Wanted: $prereq $version\n";
         } else {
-          ok(1, ($loaded ? 'loaded' : 'failed to load') . " $prereq $version");
+          ok(1, ($loaded ? 'loaded' : 'failed to load') . " $prereq");
+        }
+        if ($loaded and not ($version eq '"0"' or
+                             eval "'$prereq'->VERSION($version); 1")) {
+          printf STDERR "\n# WARNING: Got: %s %s\n#       Wanted: %s %s\n",
+                        $prereq, get_version($prereq), $prereq, $version;
         }
       } # end while <META> in prerequisites
     } # end while <META> in relationship
@@ -213,7 +223,8 @@ TEST: {
   close META;
 
   # Print version of all loaded modules:
-  if ($ENV{AUTOMATED_TESTING}) {
+  if ($ENV{AUTOMATED_TESTING} or
+      (@ARGV and ($ARGV[0] eq '-v' or $ARGV[0] eq '--verbose'))) {
     print STDERR "# Listing %INC\n";
 
     my @packages = grep { s/\.pm\Z// and do { s![\\/]!::!g; 1 } } sort keys %INC;
@@ -227,5 +238,7 @@ TEST: {
     }
   } # end if AUTOMATED_TESTING
 } # end TEST
+
+$tests_completed = $test;
 
 __END__
