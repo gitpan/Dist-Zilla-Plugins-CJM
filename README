@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.23, released August 16, 2014
+Dist-Zilla-Plugins-CJM version 4.24, released September 27, 2014
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -54,13 +54,16 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.23 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.24 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	[Test::PrereqsFromMeta]
-	  - Make insufficient version just a warning instead of a failure
-	  - Allow undefined version to fulfill prerequisite version 0
-	  - Dump all of %INC if run with -v or --verbose option
+	- No functional changes in this release, just improved docs
+
+	[MakeMaker::Custom]
+	  - Clarify that not all the boilerplate is required
+
+	[ModuleBuild::Custom]
+	  - Clarify that not all the boilerplate is required
 
 
 

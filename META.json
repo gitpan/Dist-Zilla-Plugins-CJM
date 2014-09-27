@@ -78,7 +78,7 @@
          "web" : "https://github.com/madsen/dist-zilla-plugins-cjm"
       }
    },
-   "version" : "4.23",
+   "version" : "4.24",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"
@@ -205,7 +205,7 @@
                }
             },
             "name" : "CJM/@Git/Check",
-            "version" : "2.022"
+            "version" : "2.024"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Commit",
@@ -227,7 +227,7 @@
                }
             },
             "name" : "CJM/@Git/Commit",
-            "version" : "2.022"
+            "version" : "2.024"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Tag",
@@ -235,7 +235,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "4.23",
+                  "tag" : "4.24",
                   "tag_format" : "%v%t",
                   "tag_message" : "Tagged %N %v%{ (trial release)}t",
                   "time_zone" : "local"
@@ -245,7 +245,7 @@
                }
             },
             "name" : "CJM/@Git/Tag",
-            "version" : "2.022"
+            "version" : "2.024"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Push",
@@ -261,7 +261,7 @@
                }
             },
             "name" : "CJM/@Git/Push",
-            "version" : "2.022"
+            "version" : "2.024"
          },
          {
             "class" : "Dist::Zilla::Plugin::TestRelease",

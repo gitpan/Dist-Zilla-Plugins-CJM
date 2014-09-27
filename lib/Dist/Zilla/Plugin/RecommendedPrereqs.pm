@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::RecommendedPrereqs;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.21';
-# This file is part of Dist-Zilla-Plugins-CJM 4.23 (August 16, 2014)
+# This file is part of Dist-Zilla-Plugins-CJM 4.24 (September 27, 2014)
 
 
 use 5.008;
@@ -103,8 +103,8 @@ Dist::Zilla::Plugin::RecommendedPrereqs - Look for comments recommending prerequ
 =head1 VERSION
 
 This document describes version 4.21 of
-Dist::Zilla::Plugin::RecommendedPrereqs, released August 16, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.23.
+Dist::Zilla::Plugin::RecommendedPrereqs, released September 27, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.24.
 
 =head1 SYNOPSIS
 

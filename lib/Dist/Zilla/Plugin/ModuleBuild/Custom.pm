@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '4.16';
-# This file is part of Dist-Zilla-Plugins-CJM 4.23 (August 16, 2014)
+our $VERSION = '4.24';
+# This file is part of Dist-Zilla-Plugins-CJM 4.24 (September 27, 2014)
 
 
 use Moose;
@@ -169,9 +169,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 4.16 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released August 16, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.23.
+This document describes version 4.24 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released September 27, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.24.
 
 =head1 SYNOPSIS
 
@@ -201,13 +201,18 @@ In your F<Build.PL>:
         $br->{$mod} = $tr->{$mod};
       }
     }
-  }
+  } # end unless Module::Build is 0.4004 or newer
 
   my $builder = Module::Build->new(%module_build_args);
   $builder->create_build_script;
 
-Of course, your F<Build.PL> should be more complex than that, or you
-don't need this plugin.
+Of course, your F<Build.PL> doesn't need to look exactly like this.
+If you can require Module::Build 0.4004, then you can remove the
+C<unless eval> section.  If you're not using C<share_dir>,
+you can remove that line.
+
+And if you're not adding your own code to F<Build.PL>,
+you don't need this plugin.
 
 =head1 DESCRIPTION
 

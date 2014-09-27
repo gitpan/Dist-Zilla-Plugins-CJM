@@ -19,7 +19,7 @@ package Dist::Zilla::Plugin::Test::PrereqsFromMeta;
 
 use 5.008;
 our $VERSION = '4.23';
-# This file is part of Dist-Zilla-Plugins-CJM 4.23 (August 16, 2014)
+# This file is part of Dist-Zilla-Plugins-CJM 4.24 (September 27, 2014)
 
 
 use Moose;
@@ -55,8 +55,8 @@ Dist::Zilla::Plugin::Test::PrereqsFromMeta - Check the prereqs from our META.jso
 =head1 VERSION
 
 This document describes version 4.23 of
-Dist::Zilla::Plugin::Test::PrereqsFromMeta, released August 16, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.23.
+Dist::Zilla::Plugin::Test::PrereqsFromMeta, released September 27, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.24.
 
 =head1 SYNOPSIS
 
