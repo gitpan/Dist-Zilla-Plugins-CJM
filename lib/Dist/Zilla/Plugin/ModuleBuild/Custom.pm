@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '4.24';
-# This file is part of Dist-Zilla-Plugins-CJM 4.24 (September 27, 2014)
+our $VERSION = '4.25';
+# This file is part of Dist-Zilla-Plugins-CJM 4.25 (November 8, 2014)
 
 
 use Moose;
@@ -112,6 +112,8 @@ sub get_default
   return $self->extract_keys(module_build => $self->_default_mb_args, @_);
 } # end get_default
 
+sub add_file {}                 # Don't let parent class add any files
+
 #---------------------------------------------------------------------
 sub setup_installer
 {
@@ -169,9 +171,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 4.24 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released September 27, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.24.
+This document describes version 4.25 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released November 8, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.25.
 
 =head1 SYNOPSIS
 
@@ -367,6 +369,7 @@ F<Makefile.PL> (if you prefer L<ExtUtils::MakeMaker>).
 
 
 =for Pod::Coverage
+add_file
 prune_files
 setup_installer
 template_error

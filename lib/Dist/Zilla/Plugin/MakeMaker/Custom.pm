@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::MakeMaker::Custom;
 #---------------------------------------------------------------------
 
 our $VERSION = '4.24';
-# This file is part of Dist-Zilla-Plugins-CJM 4.24 (September 27, 2014)
+# This file is part of Dist-Zilla-Plugins-CJM 4.25 (November 8, 2014)
 
 
 use Moose;
@@ -181,8 +181,8 @@ Dist::Zilla::Plugin::MakeMaker::Custom - Allow a dist to have a custom Makefile.
 =head1 VERSION
 
 This document describes version 4.24 of
-Dist::Zilla::Plugin::MakeMaker::Custom, released September 27, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.24.
+Dist::Zilla::Plugin::MakeMaker::Custom, released November 8, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.25.
 
 =head1 SYNOPSIS
 
