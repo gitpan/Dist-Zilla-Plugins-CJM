@@ -1,4 +1,4 @@
-Dist-Zilla-Plugins-CJM version 4.25, released November 8, 2014
+Dist-Zilla-Plugins-CJM version 4.26, released December 13, 2014
 
 
 Dist-Zilla-Plugins-CJM is a collection of plugins I've written for
@@ -41,9 +41,9 @@ DEPENDENCIES
   File::Copy                         
   File::HomeDir                      0.81
   File::Temp                         0.19
+  List::Util                         
   Module::Metadata                   
   Moose                              
-  Moose::Autobox                     
   Moose::Role                        
   Path::Class                        
   Scalar::Util                       
@@ -54,11 +54,13 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.25 of Dist-Zilla-Plugins-CJM:
+    Here's what's new in version 4.26 of Dist-Zilla-Plugins-CJM:
     (See the file "Changes" for the full revision history.)
 
-	[ModuleBuild::Custom]
-	  - Fix compatibility with Dist::Zilla 5.022
+	- Don't use Moose::Autobox (GitHub#3: Thanks, Olivier Mengué)
+	  Dist::Zilla doesn't use it anymore, so it's an extra prerequisite.
+	  This affects ArchiveRelease, GitVersionCheckCJM, MakeMaker::Custom,
+	  and ModuleBuild::Custom, but their behavior should not have changed.
 
 
 

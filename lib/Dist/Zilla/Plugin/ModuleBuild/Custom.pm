@@ -17,15 +17,16 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '4.25';
-# This file is part of Dist-Zilla-Plugins-CJM 4.25 (November 8, 2014)
+our $VERSION = '4.26';
+# This file is part of Dist-Zilla-Plugins-CJM 4.26 (December 13, 2014)
 
 
 use Moose;
-use Moose::Autobox;
 extends 'Dist::Zilla::Plugin::ModuleBuild';
 with qw(Dist::Zilla::Role::FilePruner
         Dist::Zilla::Role::HashDumper);
+
+use List::Util ();
 
 # We're trying to make the template executable before it's filled in,
 # so we want delimiters that look like comments:
@@ -119,7 +120,8 @@ sub setup_installer
 {
   my $self = shift;
 
-  my $file = $self->zilla->files->grep(sub { $_->name eq 'Build.PL' })->head
+  my $file = List::Util::first { $_->name eq 'Build.PL' }
+             @{ $self->zilla->files }
       or $self->log_fatal("No Build.PL found in dist");
 
   # Process Build.PL through Text::Template:
@@ -171,9 +173,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 4.25 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released November 8, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.25.
+This document describes version 4.26 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released December 13, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.26.
 
 =head1 SYNOPSIS
 

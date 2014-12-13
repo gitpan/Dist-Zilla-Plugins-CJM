@@ -17,13 +17,12 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '4.13';
-# This file is part of Dist-Zilla-Plugins-CJM 4.25 (November 8, 2014)
+our $VERSION = '4.26';
+# This file is part of Dist-Zilla-Plugins-CJM 4.26 (December 13, 2014)
 
 
 use version 0.77 ();
 use Moose;
-use Moose::Autobox;
 with(
   'Dist::Zilla::Role::FileMunger',
   'Dist::Zilla::Role::ModuleInfo',
@@ -74,7 +73,7 @@ sub munge_files {
 
   # Check each module:
   my $errors = 0;
-  foreach my $file ($files->flatten) {
+  foreach my $file (@{ $files }) {
     ++$errors if $self->munge_file($file, $git, \%modified, \%released);
   } # end foreach $file
 
@@ -160,9 +159,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 4.13 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released November 8, 2014
-as part of Dist-Zilla-Plugins-CJM version 4.25.
+This document describes version 4.26 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released December 13, 2014
+as part of Dist-Zilla-Plugins-CJM version 4.26.
 
 =head1 SYNOPSIS
 

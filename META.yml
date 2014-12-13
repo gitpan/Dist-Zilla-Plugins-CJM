@@ -32,9 +32,9 @@ requires:
   File::Copy: 0
   File::HomeDir: 0.81
   File::Temp: 0.19
+  List::Util: 0
   Module::Metadata: 0
   Moose: 0
-  Moose::Autobox: 0
   Moose::Role: 0
   Path::Class: 0
   Scalar::Util: 0
@@ -44,7 +44,7 @@ requires:
   version: 0.77
 resources:
   repository: git://github.com/madsen/dist-zilla-plugins-cjm.git
-version: 4.25
+version: 4.26
 x_Dist_Zilla:
   perl:
     version: 5.018002
@@ -137,7 +137,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::GitVersionCheckCJM
       name: CJM/GitVersionCheckCJM
-      version: 4.13
+      version: 4.26
     -
       class: Dist::Zilla::Plugin::TemplateCJM
       name: CJM/TemplateCJM
@@ -159,7 +159,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: CJM/@Git/Check
-      version: 2.025
+      version: 2.027
     -
       class: Dist::Zilla::Plugin::Git::Commit
       config:
@@ -175,21 +175,21 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: CJM/@Git/Commit
-      version: 2.025
+      version: 2.027
     -
       class: Dist::Zilla::Plugin::Git::Tag
       config:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: 4.25
+          tag: 4.26
           tag_format: '%v%t'
           tag_message: 'Tagged %N %v%{ (trial release)}t'
           time_zone: local
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: CJM/@Git/Tag
-      version: 2.025
+      version: 2.027
     -
       class: Dist::Zilla::Plugin::Git::Push
       config:
@@ -200,7 +200,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: CJM/@Git/Push
-      version: 2.025
+      version: 2.027
     -
       class: Dist::Zilla::Plugin::TestRelease
       name: CJM/TestRelease
@@ -212,7 +212,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ArchiveRelease
       name: CJM/ArchiveRelease
-      version: 4.00
+      version: 4.26
     -
       class: tools::CompileTests
       name: '=tools::CompileTests'
